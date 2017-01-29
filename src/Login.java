@@ -1,9 +1,10 @@
-import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JFrame;
+
 @SuppressWarnings("serial")
-public class Login extends Frame 
+public class Login extends JFrame 
 {	
 	public Login (String title)
 	{

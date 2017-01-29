@@ -21,10 +21,8 @@ public class Controller
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void setTcards ()
+	public void setCCards ()
 	{
 		table.setCards(dealer.getCards(5));
 	}
-	
-
 }
