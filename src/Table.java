@@ -2,33 +2,22 @@
 public class Table
 {
 	private int pot;
-	private Card [] cCards;
+	private List<Card> cCards;
 	
 	
 	public Table ()
 	{
 		pot = 0;
-		cCards = new Card [5];
+		cCards = new List<Card> ();
 	}
 	
 	public void setCards (List<Card> cards)
 	{
-		int i = 0;
-		cards.toFirst();
-		while (cards.hasAccess())
-		{
-			cCards [i] = cards.getContent();
-			cards.next();
-			i++;
-		}
+		cCards = cards;
 	}
 	
-	public Card [] getCards ()
+	public List<Card> getCards ()
 	{
-		for (int i = 0; i < cCards.length; i++)
-		{
-			System.out.println(cCards [i].getSuit() + ",    " + cCards [i].getRank());
-		}
 		return cCards; 
 	}
 	

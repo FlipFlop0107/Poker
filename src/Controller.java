@@ -1,7 +1,6 @@
 
 public class Controller
 {
-	//private Login login;
 	private GUI gui;
 	private Dealer dealer;
 	private Table table;
@@ -9,7 +8,6 @@ public class Controller
 	
 	public Controller ()
 	{
-		//login = new Login ("Login");
 		gui = new GUI ("Poker");
 		dealer = new Dealer ();
 		table = new Table ();
