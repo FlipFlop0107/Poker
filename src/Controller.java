@@ -21,6 +21,6 @@ public class Controller
 	@SuppressWarnings("unchecked")
 	public void setCCards ()
 	{
-		table.setCards(dealer.getCards(5));
+		table.setCCards(dealer.getCards(5));
 	}
 }

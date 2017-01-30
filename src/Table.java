@@ -11,12 +11,12 @@ public class Table
 		cCards = new List<Card> ();
 	}
 	
-	public void setCards (List<Card> cards)
+	public void setCCards (List<Card> cards)
 	{
 		cCards = cards;
 	}
 	
-	public List<Card> getCards ()
+	public List<Card> getCCards ()
 	{
 		return cCards; 
 	}

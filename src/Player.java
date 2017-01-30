@@ -23,12 +23,12 @@ public class Player
 		return bet;
 	}
 	
-	public Card [] getHand ()
+	public Card [] getPocket ()
 	{
 		return pocket;
 	}
 	
-	public void setHand (Card card1, Card card2)
+	public void setPocket (Card card1, Card card2)
 	{
 		pocket [0] = card1;
 		pocket [1] = card2;
@@ -49,18 +49,15 @@ public class Player
 		return sBlind;
 	}
 
-
 	public void setSBlind(boolean sBlind)
 	{
 		this.sBlind = sBlind;
 	}
 
-
 	public boolean isBBlind()
 	{
 		return bBlind;
 	}
-
 
 	public void setBBlind(boolean bBlind)
 	{

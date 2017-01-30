@@ -48,14 +48,14 @@ public class Deck
 		{	
 			while (!deck.isEmpty())
 		    {
-		    	rnd = rndGen.nextInt(2) +1;
+		    	rnd = rndGen.nextInt(3) +1;
 		    	for (int i = 0; i < rnd; i++)
 		    	{
 		    		stack1.push(deck.top());
 		    		deck.pop();
 		    	}
 		    	
-		    	rnd = rndGen.nextInt(2) +1;
+		    	rnd = rndGen.nextInt(3) +1;
 		    	for (int i = 0; i < rnd; i++)
 		    	{
 		    		stack2.push(deck.top());
@@ -65,14 +65,14 @@ public class Deck
 			
 		    while (!stack1.isEmpty() && !stack2.isEmpty())
 		    {
-		    	rnd = rndGen.nextInt(2) +1;
+		    	rnd = rndGen.nextInt(3) +1;
 		    	for (int i = 0; i < rnd; i++)
 		    	{
 		    		deck.push(stack1.top());
 		    		stack1.pop();
 		    	}
 		    	
-		    	rnd = rndGen.nextInt(2) +1;
+		    	rnd = rndGen.nextInt(3) +1;
 		    	for (int i = 0; i < rnd; i++)
 		    	{
 		    		deck.push(stack2.top());
