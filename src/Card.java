@@ -1,34 +1,30 @@
 
 public class Card
 {
-	private String rank;
-	private String suit;
+	private int ID;
+	private int rank;
+	private int suit;
 	
 	
-	public enum Rank
+	public Card (int rank, int suit)
 	{
-		TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE;
-	}
-	
-	public enum Suit
-	{
-		CLUBS, DIAMONDS, HEARTS, SPADES;
-	}
-	
-	
-	public Card (String pRank, String pSuit)
-	{
-		rank = pRank;
-		suit = pSuit;
+		this.rank = rank;
+		this.suit = suit;
 	}
 
 
-	public String getRank()
+	public int getID ()
+	{
+		ID = suit*100+rank;
+		return ID;
+	}
+	
+	public int getRank()
 	{
 		return rank;
 	}
 
-	public String getSuit()
+	public int getSuit()
 	{
 		return suit;
 	}

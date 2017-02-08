@@ -63,4 +63,5 @@ public class Player
 	{
 		this.bBlind = bBlind;
 	}
+	
 }

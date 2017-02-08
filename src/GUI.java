@@ -15,7 +15,21 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GUI extends JFrame
 {
+	private int playerAmount;
+	private int difficulty;
 	private CardLayout cl;
+	private Font mm_font;
+	private ImageIcon table;
+	private ImageIcon chip1;
+	private ImageIcon chip5;
+	private ImageIcon chip10;
+	private ImageIcon chip25;
+	private ImageIcon chip50;
+	private ImageIcon chip100;
+	private ImageIcon chip500;
+	private ImageIcon chip1000;
+	private ImageIcon chip5000;
+	private ImageIcon chip10000;
 	
 	private JPanel contP;
 	private JPanel intro;
@@ -40,6 +54,18 @@ public class GUI extends JFrame
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/10000.png")));
 		
 		gui_elements = new List<Component> ();
+		mm_font = new Font ("Adobe Arabic", Font.BOLD, 23);
+		table = new ImageIcon (GUI.class.getResource("/images/table.jpg"));
+		chip1 = new ImageIcon (GUI.class.getResource("/images/1.png"));
+		chip5 = new ImageIcon (GUI.class.getResource("/images/5.png"));
+		chip10 = new ImageIcon (GUI.class.getResource("/images/10.png"));
+		chip25 = new ImageIcon (GUI.class.getResource("/images/25.png"));
+		chip50 = new ImageIcon (GUI.class.getResource("/images/50.png"));
+		chip100 = new ImageIcon (GUI.class.getResource("/images/100.png"));
+		chip500 = new ImageIcon (GUI.class.getResource("/images/500.png"));
+		chip1000 = new ImageIcon (GUI.class.getResource("/images/1000.png"));
+		chip5000 = new ImageIcon (GUI.class.getResource("/images/5000.png"));
+		chip10000 = new ImageIcon (GUI.class.getResource("/images/10000.png"));
 		
 		cl = new CardLayout();
 		contP = new JPanel();
@@ -73,26 +99,26 @@ public class GUI extends JFrame
 		mainMenu.setLayout(null);
 		
 		mm_continue = new JButton("Continue");
-		mm_continue.setFont(new Font("Adobe Arabic", Font.BOLD, 23));
+		mm_continue.setFont(mm_font);
 		mm_continue.setBounds(90, 70, 200, 40);
 		mainMenu.add(mm_continue);
 		gui_elements.append(mm_continue);
 		
 		mm_new = new JButton("Start New Game");
-		mm_new.setFont(new Font("Adobe Arabic", Font.BOLD, 23));
+		mm_new.setFont(mm_font);
 		mm_new.setBounds(90, 140, 200, 40);
 		mainMenu.add(mm_new);
 		gui_elements.append(mm_new);
 		
 		mm_options = new JButton("Options");
-		mm_options.setFont(new Font("Adobe Arabic", Font.BOLD, 23));
+		mm_options.setFont(mm_font);
 		mm_options.setBounds(90, 210, 200, 40);
 		mainMenu.add(mm_options);
 		gui_elements.append(mm_options);
 		
 		background = new JLabel ();
 		background.setBounds(0, 0, 960, 540);
-		background.setIcon(new ImageIcon(GUI.class.getResource("/images/table.jpg")));
+		background.setIcon(table);
 		mainMenu.add(background);
 		
 		cl.show(contP, "main menu");
@@ -104,7 +130,6 @@ public class GUI extends JFrame
 		
 		
 		
-		options.add(background);
 		
 		
 		game = new JPanel();
@@ -113,7 +138,6 @@ public class GUI extends JFrame
 		
 		
 		
-		game.add(background);
 	}
 	
 	
@@ -137,5 +161,25 @@ public class GUI extends JFrame
 	public void setCL (String name)
 	{
 		cl.show(contP, name);
+	}
+	
+	public int getDifficulty ()
+	{
+		return difficulty;
+	}
+	
+	public void setDificulty (int difficulty)
+	{
+		this.difficulty = difficulty;
+	}
+	
+	public int getPlayerAmount ()
+	{
+		return playerAmount;
+	}
+	
+	public void setPlayerAmount (int amount)
+	{
+		playerAmount = amount;
 	}
 }

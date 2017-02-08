@@ -5,21 +5,18 @@ public class Deck
 	private Stack<Card> deck;
 	private Card [] cards;
 	
+	
 	public Deck ()
 	{
 		cards = new Card [52];
 		deck = new Stack<Card> ();
 		
-		String[] rank = {"Two", "Three", "Four", "Five,", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
-		String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
-		
-		
 		int counter = 0;
-		for (int x = 0; x < suit.length; x++)
+		for (int x = 1; x < 5; x++)
 		{
-			for (int y = 0; y < rank.length ; y++)
+			for (int y = 1; y < 14 ; y++)
 			{
-				cards [counter] = new Card (rank[y], suit[x]);
+				cards [counter] = new Card (y, x);
 				counter++;
 			}
 		}
@@ -28,14 +25,15 @@ public class Deck
 		{
 			deck.push(cards [i]);
 		}
-		mix();
-		/*
-		for (int i = 0; i < 51; i++)
+		//mix();
+		
+		for (int i = 0; i < 52; i++)
 		{
-			System.out.println(deck.top().getSuit() + ",    " + deck.top().getRank() + ",    " + i);
+			System.out.println(deck.top().getID());
 			deck.pop();
-		}*/
+		}
 	}
+	
 	
 	public void mix ()
 	{
