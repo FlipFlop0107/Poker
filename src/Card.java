@@ -26,6 +26,6 @@ public class Card
 
 	public int getSuit()
 	{
-		return suit;
+		return suit; //1 = Clubs, 2 = Diamonds, 3 = Hearts, 4 = Spades
 	}
 }

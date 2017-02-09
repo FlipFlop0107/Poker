@@ -25,13 +25,13 @@ public class Deck
 		{
 			deck.push(cards [i]);
 		}
-		//mix();
+		mix();
 		
-		for (int i = 0; i < 52; i++)
+		/*for (int i = 0; i < 52; i++)
 		{
 			System.out.println(deck.top().getID());
 			deck.pop();
-		}
+		}*/
 	}
 	
 	
