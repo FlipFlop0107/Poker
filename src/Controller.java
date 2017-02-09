@@ -6,7 +6,7 @@ public class Controller implements ActionListener
 {
 	private GUI gui;
 	private Dealer dealer;
-	private Table table;
+	public static Table table;
 
 	
 	public Controller () throws InterruptedException
@@ -43,8 +43,8 @@ public class Controller implements ActionListener
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void setCCards ()
+	public void setCCard ()
 	{
-		table.setCCards(dealer.getCards(5));
+		table.setCCard(dealer.getCCards(5));
 	}
 }

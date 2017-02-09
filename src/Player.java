@@ -64,4 +64,17 @@ public class Player
 		this.bBlind = bBlind;
 	}
 	
+	public List<Card> pocketToList ()
+	{
+		List<Card> temp = new List<Card> ();
+		temp.append(pocket[0]);
+		temp.append(pocket[1]);
+		return temp;
+	}
+	
+	public int checkCards ()
+	{
+		int i = new Rules (Controller.table.getCCards(), pocketToList()).checkCards();
+		return i; 
+	}
 }

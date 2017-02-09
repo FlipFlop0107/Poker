@@ -11,9 +11,9 @@ public class Table
 		cCards = new List<Card> ();
 	}
 	
-	public void setCCards (List<Card> cards)
+	public void setCCard (List<Card> cards)
 	{
-		cCards = cards;
+		cCards.concat(cards);;
 	}
 	
 	public List<Card> getCCards ()

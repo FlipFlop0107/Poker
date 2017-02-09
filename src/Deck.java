@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Deck
 {
-	private Stack<Card> deck;
+	public Stack<Card> deck;
 	private Card [] cards;
 	
 	

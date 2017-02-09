@@ -18,4 +18,16 @@ public class Dealer
 		}
 		return cards;
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public List getCCards (int amount)
+	{
+		deck.deck.pop();
+		List<Card> cards = new List<Card> ();
+		for (int i = 0; i < amount; i++)
+		{
+			cards.append(deck.getCard());
+		}
+		return cards;
+	}
 }
