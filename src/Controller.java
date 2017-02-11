@@ -6,16 +6,16 @@ public class Controller implements ActionListener
 {
 	private GUI gui;
 	private Dealer dealer;
-	public static Table table;
+	private Table table;
 
 	
 	public Controller () throws InterruptedException
 	{
 		gui = new GUI ();
 		dealer = new Dealer ();
-		table = new Table ();
 		
 		gui.setActionListeners(this);
+		gui.setTextFields();
 	}
 	
 	public static void main(String[] args) throws InterruptedException
@@ -28,7 +28,7 @@ public class Controller implements ActionListener
 	{
 		if (e.getActionCommand().equals("Start New Game"))
 		{
-			gui.setCL("game");
+			gui.setCL("start options");
 		}
 		
 		else if (e.getActionCommand().equals("Continue"))
@@ -39,6 +39,15 @@ public class Controller implements ActionListener
 		else if (e.getActionCommand().equals("Options"))
 		{
 			gui.setCL("options");
+		}
+		else if (e.getActionCommand().equals("Start Game"))
+		{
+			if (gui.getSIofAmount() != 0 && gui.getSIofDifficulty() != 0)
+			{
+				new Table (gui.getSIofAmount()+1, gui.getSIofDifficulty());
+				gui.setCL("game");
+			}
+			else new Help ("");
 		}
 	}
 	

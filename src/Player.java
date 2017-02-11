@@ -72,9 +72,9 @@ public class Player
 		return temp;
 	}
 	
-	public int checkCards ()
+	public String checkCards (List<Card> cCards)
 	{
-		int i = new Rules (Controller.table.getCCards(), pocketToList()).checkCards();
+		String i = new Rules (cCards, pocketToList()).checkCards();
 		return i; 
 	}
 }

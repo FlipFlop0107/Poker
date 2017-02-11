@@ -35,11 +35,13 @@ public class Bot extends Player
 	{
 		switch (difficulty)
 		{
-			case 0:  easy = true;
+			case 1:  easy = true;
 					 break;
-			case 1:  medium = true;
+			case 2:  medium = true;
 					 break;
-			case 2:  hard = true;
+			case 3:  hard = true;
+					 break;
+			default: easy = true;
 					 break;
 		}
 	}

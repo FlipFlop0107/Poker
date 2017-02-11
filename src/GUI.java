@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame
@@ -35,6 +36,7 @@ public class GUI extends JFrame
 	private JPanel intro;
 	private JPanel mainMenu;
 	private JPanel options;
+	private JPanel startOptions;
 	private JPanel game;
 	
 	private JLabel logo;
@@ -45,6 +47,11 @@ public class GUI extends JFrame
 	private JButton mm_continue;
 	private JButton mm_new;
 	private JButton mm_options;
+	private JButton startGame;
+	private JComboBox botAmount;
+	private JComboBox botDifficulty;
+	private JTextField textField;
+	private JTextField textField_1;
 	
 	public GUI () throws InterruptedException   
 	{
@@ -129,12 +136,41 @@ public class GUI extends JFrame
 		options.setLayout(null);
 		
 		
+		startOptions = new JPanel ();
+		contP.add(startOptions, "start options");
+		startOptions.setLayout(null);
 		
+		String[] amount = {"Bot Amount?", "2", "3", "4", "5", "6"};
+		botAmount = new JComboBox(amount);
+		botAmount.setBounds(191, 188, 86, 20);
+		startOptions.add(botAmount);
+		gui_elements.append(botAmount);
+		
+		String[] difficulty = {"Difficulty?", "Easy", "Medium", "Hard"};
+		botDifficulty = new JComboBox(difficulty);
+		botDifficulty.setBounds(377, 188, 113, 20);
+		startOptions.add(botDifficulty);
+		gui_elements.append(botDifficulty);
+		
+		startGame = new JButton("Start Game");
+		startGame.setBounds(191, 316, 516, 70);
+		startOptions.add(startGame);
+		gui_elements.append(startGame);
 		
 		
 		game = new JPanel();
 		contP.add(game, "game");
 		game.setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(332, 189, 86, 20);
+		game.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(332, 310, 86, 20);
+		game.add(textField_1);
+		textField_1.setColumns(10);
 		
 		
 		
@@ -181,5 +217,29 @@ public class GUI extends JFrame
 	public void setPlayerAmount (int amount)
 	{
 		playerAmount = amount;
+	}
+	
+	public void setTextFields ()
+	{
+		/*String a = "";
+		List<Card> temp = Controller.table.getCCards();
+		temp.toFirst();
+		for (int i = 0; i < 5; i++)
+		{
+			a = a + "  ,"+temp.getContent().getID();
+			temp.next();
+			
+		}
+		textField.setText(a);*/
+	}
+	
+	public int getSIofAmount ()
+	{
+		return botAmount.getSelectedIndex();
+	}
+	
+	public int getSIofDifficulty ()
+	{
+		return botDifficulty.getSelectedIndex();
 	}
 }

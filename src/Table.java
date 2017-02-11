@@ -3,12 +3,19 @@ public class Table
 {
 	private int pot;
 	private List<Card> cCards;
+	private List<Player> players;
+	private Player player;
 	
-	
-	public Table ()
+	public Table (int botAmount, int botDifficulty)
 	{
 		pot = 0;
 		cCards = new List<Card> ();
+		players = new List<Player> ();
+		for (int i = 0; i < botAmount; i++)
+		{
+			players.append(new Bot(botDifficulty));
+		}
+		players.append(player);
 	}
 	
 	public void setCCard (List<Card> cards)

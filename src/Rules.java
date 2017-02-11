@@ -17,20 +17,20 @@ public class Rules
 	}
 	
 	
-	public int checkCards ()
+	public String checkCards ()
 	{
 		sort(1);
-		int i = cards[0].getRank();
+		String i = "highest"+cards[0].getRank();
 		
-		//if (checkRoyalFlush() != 0) return checkRoyalFlush();
-		//else if (checkStraightFlush() != 0) return checkStraightFlush();
-		//else if (checkFourOfAKind() != 0) return checkFourOfAKind();
-		//else if (checkFullHouse() != 0) return checkFullHouse();
-		//else if (checkFlush() != 0) return checkFlush();
-		//else if (checkStraight() != 0) return checkStraight();
-		//else if (checkThreeOfAKind() != 0) return checkThreeOfAKind();
-		//else if (checkTwoPair() != 0) return checkTwoPair();
-		if (checkOnePair() != 0) return checkOnePair();
+		//if (checkRoyalFlush() != 0) return "royal"+checkRoyalFlush();
+		//else if (checkStraightFlush() != 0) return "straightflush"+checkStraightFlush();
+		//else if (checkFourOfAKind() != 0) return "four"+checkFourOfAKind();
+		//else if (checkFullHouse() != 0) return "full"+checkFullHouse();
+		//else if (checkFlush() != 0) return "flush"+checkFlush();
+		//else if (checkStraight() != 0) return "straight"+checkStraight();
+		//else if (checkThreeOfAKind() != 0) return "three"+checkThreeOfAKind();
+		//else if (checkTwoPair() != 0) return "two"+checkTwoPair();
+		if (checkOnePair() != 0) return "one"+checkOnePair();
 		
 		
 		
@@ -54,7 +54,8 @@ public class Rules
 	
 	/*private int checkFullHouse ()
 	{
-		
+		checkOnePair();
+		checkThreeOfAKind();
 	}*/
 	
 	/*private int checkStraight ()
@@ -93,7 +94,7 @@ public class Rules
 	}
 	
 	
-	private void dreieckstausch(int a, int b)
+	private void deltaExchange (int a, int b)
 	{
 		Card temp;
 		temp = cards[a];
@@ -112,7 +113,7 @@ public class Rules
 				{
 					if (cards[x].getRank() > cards[i].getRank())
 					{
-						dreieckstausch(x,i);
+						deltaExchange (x,i);
 					}
 				}
 			}
@@ -124,7 +125,7 @@ public class Rules
 				{
 					if (cards[x].getRank() < cards[i].getRank())
 					{
-						dreieckstausch(x,i);
+						deltaExchange (x,i);
 					}
 				}
 			}
