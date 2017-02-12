@@ -58,21 +58,21 @@ public class GUI extends JFrame
 		setResizable(false);
 		setBounds(360, 200, 960, 540);
 		setTitle("Texas Hold'em  -  Poker");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/10000.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/chips/10000.png")));
 		
 		gui_elements = new List<Component> ();
 		mm_font = new Font ("Adobe Arabic", Font.BOLD, 23);
 		table = new ImageIcon (GUI.class.getResource("/images/table.jpg"));
-		chip1 = new ImageIcon (GUI.class.getResource("/images/1.png"));
-		chip5 = new ImageIcon (GUI.class.getResource("/images/5.png"));
-		chip10 = new ImageIcon (GUI.class.getResource("/images/10.png"));
-		chip25 = new ImageIcon (GUI.class.getResource("/images/25.png"));
-		chip50 = new ImageIcon (GUI.class.getResource("/images/50.png"));
-		chip100 = new ImageIcon (GUI.class.getResource("/images/100.png"));
-		chip500 = new ImageIcon (GUI.class.getResource("/images/500.png"));
-		chip1000 = new ImageIcon (GUI.class.getResource("/images/1000.png"));
-		chip5000 = new ImageIcon (GUI.class.getResource("/images/5000.png"));
-		chip10000 = new ImageIcon (GUI.class.getResource("/images/10000.png"));
+		chip1 = new ImageIcon (GUI.class.getResource("/images/chips/1.png"));
+		chip5 = new ImageIcon (GUI.class.getResource("/images/chips/5.png"));
+		chip10 = new ImageIcon (GUI.class.getResource("/images/chips/10.png"));
+		chip25 = new ImageIcon (GUI.class.getResource("/images/chips/25.png"));
+		chip50 = new ImageIcon (GUI.class.getResource("/images/chips/50.png"));
+		chip100 = new ImageIcon (GUI.class.getResource("/images/chips/100.png"));
+		chip500 = new ImageIcon (GUI.class.getResource("/images/chips/500.png"));
+		chip1000 = new ImageIcon (GUI.class.getResource("/images/chips/1000.png"));
+		chip5000 = new ImageIcon (GUI.class.getResource("/images/chips/5000.png"));
+		chip10000 = new ImageIcon (GUI.class.getResource("/images/chips/10000.png"));
 		
 		cl = new CardLayout();
 		contP = new JPanel();
@@ -85,7 +85,7 @@ public class GUI extends JFrame
 		intro.setLayout(null);
 		
 		logo = new JLabel();
-		logo.setIcon(new ImageIcon(GUI.class.getResource("/images/10000.png")));
+		logo.setIcon(new ImageIcon(GUI.class.getResource("/images/chips/10000.png")));
 		logo.setBounds(360, 50, 241, 241);
 		intro.add(logo);
 		
