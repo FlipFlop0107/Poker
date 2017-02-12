@@ -2,7 +2,7 @@
 public class Table
 {
 	private int pot;
-	private List<Card> cCards;
+	public static List<Card> cCards;
 	private List<Player> players;
 	private Player player;
 	

@@ -1,6 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class Controller implements ActionListener
 {
@@ -15,7 +14,6 @@ public class Controller implements ActionListener
 		dealer = new Dealer ();
 		
 		gui.setActionListeners(this);
-		gui.setTextFields();
 	}
 	
 	public static void main(String[] args) throws InterruptedException
@@ -44,8 +42,10 @@ public class Controller implements ActionListener
 		{
 			if (gui.getSIofAmount() != 0 && gui.getSIofDifficulty() != 0)
 			{
-				new Table (gui.getSIofAmount()+1, gui.getSIofDifficulty());
+				table = new Table (gui.getSIofAmount()+1, gui.getSIofDifficulty());
 				gui.setCL("game");
+				setCCard();
+				gui.setTextFields();
 			}
 			else new Help ("");
 		}

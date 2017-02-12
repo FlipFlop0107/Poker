@@ -163,7 +163,7 @@ public class GUI extends JFrame
 		game.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(332, 189, 86, 20);
+		textField.setBounds(332, 189, 200, 20);
 		game.add(textField);
 		textField.setColumns(10);
 		
@@ -221,16 +221,15 @@ public class GUI extends JFrame
 	
 	public void setTextFields ()
 	{
-		/*String a = "";
-		List<Card> temp = Controller.table.getCCards();
+		String a = "";
+		List<Card> temp = Table.cCards;
 		temp.toFirst();
 		for (int i = 0; i < 5; i++)
 		{
 			a = a + "  ,"+temp.getContent().getID();
 			temp.next();
-			
 		}
-		textField.setText(a);*/
+		textField.setText(a);
 	}
 	
 	public int getSIofAmount ()
