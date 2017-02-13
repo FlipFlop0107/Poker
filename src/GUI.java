@@ -1,10 +1,16 @@
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.AbstractButton;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -42,7 +48,14 @@ public class GUI extends JFrame
 	private JLabel logo;
 	private JLabel intro_text;
 	private JLabel background;
+	private JLabel lbl;
+	private JLabel lbl2;
+	private JLabel lbl3;
+	private JLabel lbl4;
+	private JLabel lbl5;
 	
+	
+	private List<JLabel> card;
 	private List<Component> gui_elements;
 	private JButton mm_continue;
 	private JButton mm_new;
@@ -60,6 +73,7 @@ public class GUI extends JFrame
 		setTitle("Texas Hold'em  -  Poker");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/chips/10000.png")));
 		
+		card = new List<JLabel> ();
 		gui_elements = new List<Component> ();
 		mm_font = new Font ("Adobe Arabic", Font.BOLD, 23);
 		table = new ImageIcon (GUI.class.getResource("/images/table.jpg"));
@@ -172,6 +186,30 @@ public class GUI extends JFrame
 		game.add(textField_1);
 		textField_1.setColumns(10);
 		
+		lbl = new JLabel ();
+		lbl.setBounds(166, 29, 86, 127);
+		game.add(lbl);
+		card.append(lbl);
+		
+		lbl2 = new JLabel ();
+		lbl2.setBounds(262, 29, 88, 127);
+		game.add(lbl2);
+		card.append(lbl2);
+		
+		lbl3 = new JLabel ();
+		lbl3.setBounds(360, 29, 86, 127);
+		game.add(lbl3);
+		card.append(lbl3);
+		
+		lbl4 = new JLabel ();
+		lbl4.setBounds(466, 29, 88, 127);
+		game.add(lbl4);
+		card.append(lbl4);
+		
+		lbl5 = new JLabel ();
+		lbl5.setBounds(575, 29, 88, 127);
+		game.add(lbl5);
+		card.append(lbl5);
 		
 		
 	}
@@ -230,6 +268,14 @@ public class GUI extends JFrame
 			temp.next();
 		}
 		textField.setText(a);
+		temp.toFirst();
+		card.toFirst();
+		for (int i = 0; i < 5; i++)
+		{
+			card.getContent().setIcon(temp.getContent().getIcon(card.getContent().getWidth(), card.getContent().getHeight()));
+			temp.next();
+			card.next();
+		}
 	}
 	
 	public int getSIofAmount ()
