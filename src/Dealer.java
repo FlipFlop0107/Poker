@@ -9,25 +9,26 @@ public class Dealer
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public List getCards (int amount)
-	{	
-		List<Card> cards = new List<Card> ();
-		for (int i = 0; i < amount; i++)
-		{
-			cards.append(deck.getCard());
-		}
-		return cards;
-	}
-	
-	@SuppressWarnings("rawtypes")
-	public List getCCards (int amount)
+	public List getCards (String a)
 	{
-		deck.deck.pop();
-		List<Card> cards = new List<Card> ();
-		for (int i = 0; i < amount; i++)
+		switch (a)
 		{
-			cards.append(deck.getCard());
-		}
-		return cards;
+		case "pocket": List<Card> pocket = new List<Card> ();
+					   for (int i = 0; i < 2; i++) pocket.append(deck.getCard());
+					   return pocket;
+		case "flop":   deck.deck.pop();
+				 	   List<Card> flop = new List<Card> ();
+					   for (int i = 0; i < 3; i++) flop.append(deck.getCard());
+					   return flop;
+		case "turn":   deck.deck.pop();
+					   List<Card> turn = new List<Card> ();
+					   turn.append(deck.getCard());
+					   return turn;
+		case "river":  deck.deck.pop();
+					   List<Card> river = new List<Card> ();
+					   river.append(deck.getCard());
+				       return river;
+		default:       return null;
+		}	
 	}
 }

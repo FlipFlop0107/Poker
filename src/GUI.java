@@ -53,7 +53,8 @@ public class GUI extends JFrame
 	private JLabel lbl3;
 	private JLabel lbl4;
 	private JLabel lbl5;
-	
+	private JLabel lbl6;
+	private JLabel lbl7;
 	
 	private List<JLabel> card;
 	private List<Component> gui_elements;
@@ -65,6 +66,7 @@ public class GUI extends JFrame
 	private JComboBox botDifficulty;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
 	
 	public GUI () throws InterruptedException   
 	{
@@ -140,7 +142,7 @@ public class GUI extends JFrame
 		background = new JLabel ();
 		background.setBounds(0, 0, 960, 540);
 		background.setIcon(table);
-		mainMenu.add(background);
+		//mainMenu.add(background);
 		
 		cl.show(contP, "main menu");
 		
@@ -186,6 +188,11 @@ public class GUI extends JFrame
 		game.add(textField_1);
 		textField_1.setColumns(10);
 		
+		textField_2 = new JTextField();
+		textField_2.setBounds(150, 255, 168, 20);
+		game.add(textField_2);
+		textField_2.setColumns(10);
+		
 		lbl = new JLabel ();
 		lbl.setBounds(166, 29, 86, 127);
 		game.add(lbl);
@@ -211,10 +218,24 @@ public class GUI extends JFrame
 		game.add(lbl5);
 		card.append(lbl5);
 		
+		lbl6 = new JLabel ();
+		lbl6.setBounds(466, 310, 88, 127);
+		game.add(lbl6);
 		
+		lbl7 = new JLabel ();
+		lbl7.setBounds(575, 310, 88, 127);
+		game.add(lbl7);
+		
+		JButton button = new JButton ("checkCards");
+		button.setBounds(49, 339, 221, 72);
+		game.add(button);
+		gui_elements.append(button);
+		
+		game.add(background);
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	public void setActionListeners (ActionListener ac)
 	{
 		gui_elements.toFirst ();
@@ -257,25 +278,33 @@ public class GUI extends JFrame
 		playerAmount = amount;
 	}
 	
-	public void setTextFields ()
+	public void setTextFields (List<Card> cCards, Card[] pocket)
 	{
 		String a = "";
-		List<Card> temp = Table.cCards;
-		temp.toFirst();
+		cCards.toFirst();
 		for (int i = 0; i < 5; i++)
 		{
-			a = a + "  ,"+temp.getContent().getID();
-			temp.next();
+			a = a + "  ,"+cCards.getContent().getID();
+			cCards.next();
 		}
 		textField.setText(a);
-		temp.toFirst();
+		textField_1.setText(""+pocket[0].getID()+"  ,"+pocket[1].getID());
+		
+		cCards.toFirst();
 		card.toFirst();
 		for (int i = 0; i < 5; i++)
 		{
-			card.getContent().setIcon(temp.getContent().getIcon(card.getContent().getWidth(), card.getContent().getHeight()));
-			temp.next();
+			card.getContent().setIcon(cCards.getContent().getIcon(card.getContent().getWidth(), card.getContent().getHeight()));
+			cCards.next();
 			card.next();
 		}
+		lbl6.setIcon(pocket[0].getIcon(lbl6.getWidth(), lbl6.getHeight()));
+		lbl7.setIcon(pocket[1].getIcon(lbl7.getWidth(), lbl7.getHeight()));
+	}
+	
+	public void setTextFields2 (String a)
+	{
+		textField_2.setText(a);
 	}
 	
 	public int getSIofAmount ()

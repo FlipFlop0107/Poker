@@ -4,15 +4,12 @@ import java.awt.event.ActionListener;
 public class Controller implements ActionListener
 {
 	private GUI gui;
-	private Dealer dealer;
 	private Table table;
 
 	
 	public Controller () throws InterruptedException
 	{
 		gui = new GUI ();
-		dealer = new Dealer ();
-		
 		gui.setActionListeners(this);
 	}
 	
@@ -43,17 +40,18 @@ public class Controller implements ActionListener
 			if (gui.getSIofAmount() != 0 && gui.getSIofDifficulty() != 0)
 			{
 				table = new Table (gui.getSIofAmount()+1, gui.getSIofDifficulty());
+				table.preflop();
+				table.setCCard("flop");
+				table.setCCard("turn");
+				table.setCCard("river");
 				gui.setCL("game");
-				setCCard();
-				gui.setTextFields();
+				gui.setTextFields(table.getCCards(), table.getPPocket());
 			}
 			else new Help ("");
 		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void setCCard ()
-	{
-		table.setCCard(dealer.getCCards(5));
+		else if (e.getActionCommand().equals("checkCards"))
+		{
+			gui.setTextFields2(table.checkPCards());
+		}
 	}
 }

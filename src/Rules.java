@@ -1,4 +1,3 @@
-
 public class Rules
 {
 	private Card [] cards;
@@ -8,8 +7,8 @@ public class Rules
 	{
 		pocket.concat(cCards);
 		pocket.toFirst();
-		cards = new Card [pocket.length()];
-		for (int i = 0; i < cards.length; i++)
+		cards = new Card [7];
+		for (int i = 0; i < 7; i++)
 		{
 			cards [i] = pocket.getContent();
 			pocket.next();
@@ -84,7 +83,7 @@ public class Rules
 		{
 			for (int y = 0; y < 7; y++)
 			{
-				if (cards[x].getRank() == cards[y].getRank() && cards[x].getID() != cards[y].getID())
+				if (cards[x].getRank() == cards[y].getRank() && cards[x] != cards[y])
 				{
 					return cards[x].getRank();
 				}
@@ -92,7 +91,6 @@ public class Rules
 		}
 		return i;
 	}
-	
 	
 	private void deltaExchange (int a, int b)
 	{

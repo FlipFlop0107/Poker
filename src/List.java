@@ -120,39 +120,6 @@ public class List<ContentType> {
     // Es gibt keinen Zugriff, wenn current auf kein Element verweist.
     return current != null; 
   }
-
-  /**
-   * Die Anfrage liefert die Länge der Liste
-   * 
-   * @return die Länge der Liste
-   */
-  public int length ()
-  {
-	  if (hasAccess())
-	  {
-		  int length = 0;
-		  int temp = 0;
-		  while (hasAccess())
-		  {
-			  next();
-			  temp++;
-		  }
-		  toFirst();
-		  while (hasAccess())
-		  {
-			  length++;
-			  next();
-		  }
-		  temp = length - temp;
-		  toFirst();
-		  for (int i = 0; i < temp; i++)
-		  {
-			  next();
-		  }
-		  return length;
-	  }
-	  else return 0;
-  }
   
   /**
    * Falls die Liste nicht leer ist, es ein aktuelles Objekt gibt und dieses

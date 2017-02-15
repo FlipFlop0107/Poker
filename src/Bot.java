@@ -31,7 +31,7 @@ public class Bot extends Player
 		return difficulty;
 	}
 	
-	public void setDifficulty (int difficulty)
+	private void setDifficulty (int difficulty)
 	{
 		switch (difficulty)
 		{

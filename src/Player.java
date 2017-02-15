@@ -28,10 +28,12 @@ public class Player
 		return pocket;
 	}
 	
-	public void setPocket (Card card1, Card card2)
+	public void setPocket (List<Card> pocket)
 	{
-		pocket [0] = card1;
-		pocket [1] = card2;
+		pocket.toFirst();
+		this.pocket [0] = pocket.getContent();
+		pocket.next();
+		this.pocket [1] = pocket.getContent();
 	}
 	
 	public int getBalance ()

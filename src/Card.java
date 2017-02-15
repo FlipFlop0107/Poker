@@ -91,7 +91,7 @@ public class Card
 			case 411: return new ImageIcon (scaledImage(new ImageIcon (Card.class.getResource("/images/cards/queen_of_spades.png")).getImage(), w, h));
 			case 412: return new ImageIcon (scaledImage(new ImageIcon (Card.class.getResource("/images/cards/king_of_spades.png")).getImage(), w, h));
 			case 413: return new ImageIcon (scaledImage(new ImageIcon (Card.class.getResource("/images/cards/ace_of_spades.png")).getImage(), w, h));
-			default:  return new ImageIcon (scaledImage(new ImageIcon (Card.class.getResource("/images/cards/ace_of_spades.png")).getImage(), w, h));
+			default:  return null;//new ImageIcon (scaledImage(new ImageIcon (Card.class.getResource("/images/cards/ace_of_spades.png")).getImage(), w, h));
 		}
 	}
 	

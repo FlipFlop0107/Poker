@@ -26,12 +26,6 @@ public class Deck
 			deck.push(cards [i]);
 		}
 		mix();
-		
-		/*for (int i = 0; i < 52; i++)
-		{
-			System.out.println(deck.top().getID());
-			deck.pop();
-		}*/
 	}
 	
 	
@@ -79,25 +73,6 @@ public class Deck
 		    }
 		    
 		} 
-	}
-	
-	public int decklength ()
-	{
-		int length = 0;
-		Stack<Card> temp = new Stack<Card> ();
-		
-		while (!deck.isEmpty())
-		{
-			temp.push(deck.top());
-			deck.pop();
-			length++;
-		}
-		while (!temp.isEmpty())
-		{
-			deck.push(temp.top());
-			temp.pop();
-		}
-		return length;
 	}
 	
 	public Card getCard ()
