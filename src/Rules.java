@@ -71,10 +71,6 @@ public class Rules
 	{
 		
 	}*/
-	/*private int checkStraightFlush ()
-	{
-		
-	}*/
 	
 	private int checkOnePair ()
 	{
