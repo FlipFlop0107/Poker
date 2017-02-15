@@ -21,7 +21,7 @@ public class Rules
 		sort(1);
 		String i = "highest"+cards[0].getRank();
 		
-		//if (checkRoyalFlush() != 0) return "royal"+checkRoyalFlush();
+		if (checkRoyalFlush() != 0) return "royal";
 		//else if (checkStraightFlush() != 0) return "straightflush"+checkStraightFlush();
 		//else if (checkFourOfAKind() != 0) return "four"+checkFourOfAKind();
 		//else if (checkFullHouse() != 0) return "full"+checkFullHouse();
@@ -29,17 +29,20 @@ public class Rules
 		//else if (checkStraight() != 0) return "straight"+checkStraight();
 		//else if (checkThreeOfAKind() != 0) return "three"+checkThreeOfAKind();
 		//else if (checkTwoPair() != 0) return "two"+checkTwoPair();
-		if (checkOnePair() != 0) return "one"+checkOnePair();
-		
-		
+		else if (checkOnePair() != 0) return "one"+checkOnePair();
 		
 		return i;
 	}
 	
-	/*private int checkRoyalFlush ()
+	private int checkRoyalFlush ()
 	{
-		
-	}*/
+		sort(1);
+		for (int i = 0; i < 5; i++)
+		{
+			if (cards[i].getID() != cards[i+1].getID()+1) return 0;
+		}
+		return 1;
+	}
 	
 	/*private int checkStraightFlush ()
 	{
