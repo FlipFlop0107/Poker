@@ -76,7 +76,12 @@ public class Player
 	
 	public String checkCards (List<Card> cCards)
 	{
-		String i = new Rules (cCards, pocketToList()).checkCards();
-		return i; 
+		/*List<Card> temp = new List<Card> ();
+		for (int x = 1; x < 6; x++)
+		{
+			temp.append(new Card(x, 2));
+		}*/
+		
+		return new Rules (cCards/*temp*/, pocketToList()).checkCards(); 
 	}
 }

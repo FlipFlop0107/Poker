@@ -1,17 +1,21 @@
 public class Rules
 {
+	private List<Card> cardlist;
 	private Card [] cards;
+	private int a;
 	
 	
 	public Rules (List<Card> cCards, List<Card> pocket)
 	{
 		pocket.concat(cCards);
-		pocket.toFirst();
-		cards = new Card [7];
-		for (int i = 0; i < 7; i++)
+		cardlist = pocket;
+		a = length();
+		cardlist.toFirst();
+		cards = new Card [a];
+		for (int i = 0; i < a; i++)
 		{
-			cards [i] = pocket.getContent();
-			pocket.next();
+			cards [i] = cardlist.getContent();
+			cardlist.next();
 		}
 	}
 	
@@ -21,14 +25,14 @@ public class Rules
 		sort(1);
 		String i = "highest"+cards[0].getRank();
 		
-		if (checkRoyalFlush() != 0) return "royal";
-		//else if (checkStraightFlush() != 0) return "straightflush"+checkStraightFlush();
-		//else if (checkFourOfAKind() != 0) return "four"+checkFourOfAKind();
-		//else if (checkFullHouse() != 0) return "full"+checkFullHouse();
-		//else if (checkFlush() != 0) return "flush"+checkFlush();
-		//else if (checkStraight() != 0) return "straight"+checkStraight();
-		//else if (checkThreeOfAKind() != 0) return "three"+checkThreeOfAKind();
-		//else if (checkTwoPair() != 0) return "two"+checkTwoPair();
+		if (checkRoyalFlush() != 0 && a > 4) return "royal";
+		//else if (checkStraightFlush() != 0 && a > 4) return "straightflush"+checkStraightFlush();
+		//else if (checkFourOfAKind() != 0 && a > 3) return "four"+checkFourOfAKind();
+		//else if (checkFullHouse() != 0 && a > 4) return "full"+checkFullHouse();
+		//else if (checkFlush() != 0 && a > 4) return "flush"+checkFlush();
+		//else if (checkStraight() != 0 && a > 4) return "straight"+checkStraight();
+		//else if (checkThreeOfAKind() != 0 && a > 2) return "three"+checkThreeOfAKind();
+		//else if (checkTwoPair() !=  && a > 3) return "two"+checkTwoPair();
 		else if (checkOnePair() != 0) return "one"+checkOnePair();
 		
 		return i;
@@ -47,6 +51,7 @@ public class Rules
 	/*private int checkStraightFlush ()
 	{
 		
+		
 	}*/
 	
 	/*private int checkFourOfAKind ()
@@ -62,7 +67,16 @@ public class Rules
 	
 	/*private int checkStraight ()
 	{
-		
+		sort(1);
+		for (int i = 0; i < 3; i++)
+		{
+			for (int x = i; x < 4+i; x++)
+			{
+				if (cards[x].getRank() != cards[x+1].getRank()+1) break;
+				else if (x == 3+i) return cards[x-2-i].getRank();
+			}
+		}
+		return 0;
 	}*/
 	
 	/*private int checkThreeOfAKind ()
@@ -78,9 +92,9 @@ public class Rules
 	private int checkOnePair ()
 	{
 		int i = 0;
-		for (int x = 0; x < 7; x++)
+		for (int x = 0; x < a; x++)
 		{
-			for (int y = 0; y < 7; y++)
+			for (int y = 0; y < a; y++)
 			{
 				if (cards[x].getRank() == cards[y].getRank() && cards[x] != cards[y])
 				{
@@ -128,5 +142,17 @@ public class Rules
 			}
 			break;
 		}
+	}
+	
+	private int length ()
+	{
+		int i = 0;
+		cardlist.toFirst();
+		while (cardlist.hasAccess())
+		{
+			i++;
+			cardlist.next();
+		}
+		return i;
 	}
 }

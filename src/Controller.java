@@ -5,7 +5,7 @@ public class Controller implements ActionListener
 {
 	private GUI gui;
 	private Table table;
-
+	private int a = 0;
 	
 	public Controller () throws InterruptedException
 	{
@@ -41,9 +41,9 @@ public class Controller implements ActionListener
 			{
 				table = new Table (gui.getSIofAmount()+1, gui.getSIofDifficulty());
 				table.preflop();
-				table.setCCard("flop");
+				/*table.setCCard("flop");
 				table.setCCard("turn");
-				table.setCCard("river");
+				table.setCCard("river");*/
 				gui.setCL("game");
 				gui.setTextFields(table.getCCards(), table.getPPocket());
 			}
@@ -52,6 +52,29 @@ public class Controller implements ActionListener
 		else if (e.getActionCommand().equals("checkCards"))
 		{
 			gui.setTextFields2(table.checkPCards());
+		}
+		else if (e.getActionCommand().equals("Next"))
+		{
+			switch (a)
+			{
+			case 0: table.setCCard("flop");
+					a++;
+					gui.setTextFields(table.getCCards(), table.getPPocket());
+					break;
+			case 1: table.setCCard("turn");
+					a++;
+					List<Card> temp2 = table.getCCards();
+					temp2.toLast();
+					gui.setTextFields3("turn", temp2.getContent());
+					break;
+			case 2: table.setCCard("river");
+					a++;
+					List<Card> temp = table.getCCards();
+					temp.toLast();
+					gui.setTextFields3("river", temp.getContent());
+					break;
+			default: new Help ("");
+			}
 		}
 	}
 }

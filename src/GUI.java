@@ -231,6 +231,11 @@ public class GUI extends JFrame
 		game.add(button);
 		gui_elements.append(button);
 		
+		JButton button2 = new JButton("Next");
+		button2.setBounds(794, 218, 126, 57);
+		game.add(button2);
+		gui_elements.append(button2);
+		
 		game.add(background);
 	}
 	
@@ -282,9 +287,9 @@ public class GUI extends JFrame
 	{
 		String a = "";
 		cCards.toFirst();
-		for (int i = 0; i < 5; i++)
+		while (cCards.hasAccess())
 		{
-			a = a + "  ,"+cCards.getContent().getID();
+			a = a+",  "+cCards.getContent().getID();
 			cCards.next();
 		}
 		textField.setText(a);
@@ -292,7 +297,7 @@ public class GUI extends JFrame
 		
 		cCards.toFirst();
 		card.toFirst();
-		for (int i = 0; i < 5; i++)
+		while (cCards.hasAccess() && card.hasAccess())
 		{
 			card.getContent().setIcon(cCards.getContent().getIcon(card.getContent().getWidth(), card.getContent().getHeight()));
 			cCards.next();
@@ -305,6 +310,19 @@ public class GUI extends JFrame
 	public void setTextFields2 (String a)
 	{
 		textField_2.setText(a);
+	}
+	
+	public void setTextFields3 (String a, Card card)
+	{
+		switch (a)
+		{
+		case "turn":  lbl4.setIcon(card.getIcon(lbl4.getWidth(), lbl4.getHeight()));
+					  textField.setText(textField.getText()+",  "+card.getID());
+					  break;
+		case "river": lbl5.setIcon(card.getIcon(lbl5.getWidth(), lbl5.getHeight()));
+		              textField.setText(textField.getText()+",  "+card.getID());
+		              break;
+		}
 	}
 	
 	public int getSIofAmount ()
