@@ -3,8 +3,8 @@ public class Table
 {
 	private Dealer dealer;
 	private int pot;
-	private List<Card> cCards;
-	private List<Player> players;
+	private List <Card> cCards;
+	private List <Bot> players;
 	private Player player;
 	
 	public Table (int botAmount, int botDifficulty)
@@ -12,8 +12,8 @@ public class Table
 		pot = 0;
 		player = new Player ();
 		dealer = new Dealer ();
-		cCards = new List<Card> ();
-		players = new List<Player> ();
+		cCards = new List <Card> ();
+		players = new List <Bot> ();
 		for (int i = 0; i < botAmount; i++)
 		{
 			players.append(new Bot(botDifficulty));
@@ -46,6 +46,11 @@ public class Table
 		return player.getPocket();
 	}
 	
+	public List<Bot> getBots ()
+	{
+		return players;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public void preflop()
 	{
@@ -56,6 +61,16 @@ public class Table
 			players.next();
 		}
 		player.setPocket(dealer.getCards("pocket"));
+	}
+	
+	public int getPlayerBalance ()
+	{
+		return player.getBalance();
+	}
+	
+	public void playerBet (int bet)
+	{
+		player.bet(bet);
 	}
 	
 	public String checkPCards ()

@@ -3,6 +3,7 @@ public class Player
 {
 	private boolean sBlind;
 	private boolean bBlind;
+	private boolean inGame;
 	private int balance;
 	private Card [] pocket;
 	
@@ -11,16 +12,20 @@ public class Player
 	{
 		setSBlind(false);
 		setBBlind(false);
-		balance = 0;
+		setInGame(true);
+		balance = 200;
 		pocket = new Card [2];
 	}
 	
 	
-	public int bet (int pBet)
+	public int bet (int bet)
 	{	
-		int bet = pBet;
-		balance = balance - bet;
-		return bet;
+		if (isInGame())
+		{
+			balance = balance - bet;
+			return bet;
+		}
+		else return 0;
 	}
 	
 	public Card [] getPocket ()
@@ -66,6 +71,21 @@ public class Player
 		this.bBlind = bBlind;
 	}
 	
+	public boolean isInGame()
+	{
+		return inGame;
+	}
+	
+	public void setInGame(boolean inGame)
+	{
+		this.inGame = inGame;
+	}
+	
+	public void fold()
+	{
+		setInGame(true);
+	}
+	
 	public List<Card> pocketToList ()
 	{
 		List<Card> temp = new List<Card> ();
@@ -77,7 +97,7 @@ public class Player
 	public String checkCards (List<Card> cCards)
 	{
 		/*List<Card> temp = new List<Card> ();
-		for (int x = 1; x < 6; x++)
+		for (int x = 9; x < 14; x++)
 		{
 			temp.append(new Card(x, 2));
 		}*/

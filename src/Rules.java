@@ -38,7 +38,7 @@ public class Rules
 		return i;
 	}
 	
-	private int checkRoyalFlush ()
+	private int checkRoyalFlush () //Nicht richtig sortiert! Suit, Rank
 	{
 		sort(1);
 		for (int i = 0; i < 5; i++)

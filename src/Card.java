@@ -97,7 +97,7 @@ public class Card
 	
 	private Image scaledImage (Image img, int w, int h)
 	{
-		BufferedImage resizedImage = new BufferedImage (w, h, BufferedImage.TYPE_INT_RGB);
+		BufferedImage resizedImage = new BufferedImage (w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = resizedImage.createGraphics();
 		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g2.drawImage(img, 0, 0, w, h, null);
