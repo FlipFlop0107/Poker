@@ -31,4 +31,9 @@ public class Dealer
 		default:       return null;
 		}	
 	}
+	
+	public void newDeck ()
+	{
+		deck = new Deck ();
+	}
 }

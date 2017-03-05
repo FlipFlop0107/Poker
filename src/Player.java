@@ -83,7 +83,7 @@ public class Player
 	
 	public void fold()
 	{
-		setInGame(true);
+		setInGame(false);
 	}
 	
 	public List<Card> pocketToList ()
@@ -101,7 +101,6 @@ public class Player
 		{
 			temp.append(new Card(x, 2));
 		}*/
-		
 		return new Rules (cCards/*temp*/, pocketToList()).checkCards(); 
 	}
 }

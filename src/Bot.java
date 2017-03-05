@@ -9,6 +9,7 @@ public class Bot extends Player
 	{	
 		this.difficulty = difficulty;
 		System.out.println(getDifficulty());
+		name = "-  N. N.  -";
 	}
 	
 	
@@ -188,11 +189,10 @@ public class Bot extends Player
 		case 16: name = "Mathilda"; break;
 		case 17: name = "Rosalinda"; break;
 		case 18: name = "Sandra"; break;
-		case 19: name = "Marie-Luise"; break;
+		case 19: name = "Maria"; break;
 		case 20: name = "Amadeus"; break;
 		case 21: name = "Günther"; break;
 		case 22: name = "Sabrina"; break;
-		default: name = "- N. N. -"; break;
 		}
 	}
 }

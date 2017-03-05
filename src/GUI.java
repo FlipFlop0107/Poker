@@ -1,5 +1,6 @@
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -8,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
@@ -16,6 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
@@ -66,8 +69,6 @@ public class GUI extends JFrame
 	private JLabel bet100;
 	private JLabel bet500;
 	private JLabel bet1000;
-	private JLabel bet5000;
-	private JLabel bet10000;
 	
 	private List <JLabel> card;
 	private List <Component> gui_elements;
@@ -77,20 +78,29 @@ public class GUI extends JFrame
 	private JButton mm_new;
 	private JButton mm_options;
 	private JButton startGame;
+	private JButton confirmBet;
+	private JButton next;
+	private JButton reset;
 	
-	private JComboBox botAmount;
+	//private JComboBox botAmount;
 	private JComboBox botDifficulty;
 	
 	private JTextField txt_playerBalance;
 	private JTextField txt_playerBet;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	
+	private JSeparator sep;
+	
 	
 	public GUI ()
 	{
+		int frameWidth = 1110;
+		int frameHeight = 720;
+		setSize(frameWidth, frameHeight);
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = ((d.width - getSize().width) / 2);
+	    int y = ((d.height - getSize().height) / 2);
+	    setLocation(x, y);
 		setResizable(false);
-		setBounds(420, 180, 1080, 720);
 		setTitle("Texas Hold'em  -  Poker");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/chips/10000.png")));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -109,8 +119,6 @@ public class GUI extends JFrame
 		chip100 = new ImageIcon (GUI.class.getResource("/images/chips/100.png"));
 		chip500 = new ImageIcon (GUI.class.getResource("/images/chips/500.png"));
 		chip1000 = new ImageIcon (GUI.class.getResource("/images/chips/1000.png"));
-		chip5000 = new ImageIcon (GUI.class.getResource("/images/chips/5000.png"));
-		chip10000 = new ImageIcon (GUI.class.getResource("/images/chips/10000.png"));
 		
 		cl = new CardLayout();
 		contP = new JPanel();
@@ -124,12 +132,12 @@ public class GUI extends JFrame
 		
 		logo = new JLabel();
 		logo.setIcon(new ImageIcon(GUI.class.getResource("/images/chips/10000.png")));
-		logo.setBounds(360, 50, 241, 241);
+		logo.setBounds(456, 175, 241, 241);
 		intro.add(logo);
 		
 		intro_text = new JLabel();
 		intro_text.setFont(new Font("Adobe Arabic", Font.BOLD, 36));
-		intro_text.setBounds(205, 335, 550, 60);
+		intro_text.setBounds(325, 452, 550, 60);
 		intro_text.setText("Texas Hold'em  -  Poker");
 		intro.add(intro_text);
 		
@@ -168,8 +176,8 @@ public class GUI extends JFrame
 		gui_elements.append(mm_options);
 		
 		background = new JLabel ();
-		background.setBounds(0, 0, 960, 540);
-		background.setIcon(table);
+		background.setBounds(0, 0, getContentPane().getWidth(), getContentPane().getHeight());
+		background.setIcon(new ImageIcon (scaledImage(table.getImage(), background.getWidth(), background.getHeight())));
 		//mainMenu.add(background);
 		
 		cl.show(contP, "main menu");
@@ -184,11 +192,11 @@ public class GUI extends JFrame
 		contP.add(startOptions, "start options");
 		startOptions.setLayout(null);
 		
-		String[] amount = {"Bot Amount?", "2", "3", "4", "5", "6"};
+		/*String[] amount = {"Bot Amount?", "2", "3", "4", "5", "6"};
 		botAmount = new JComboBox(amount);
 		botAmount.setBounds(191, 188, 86, 20);
 		startOptions.add(botAmount);
-		gui_elements.append(botAmount);
+		gui_elements.append(botAmount);*/
 		
 		String[] difficulty = {"Difficulty?", "Easy", "Medium", "Hard"};
 		botDifficulty = new JComboBox(difficulty);
@@ -206,149 +214,132 @@ public class GUI extends JFrame
 		contP.add(game, "game");
 		game.setLayout(null);
 		
+		sep = new JSeparator ();
+		sep.setBounds(0, 540, 1104, 20);
+		game.add(sep);
+		
 		txt_playerBalance = new JTextField ();
-		txt_playerBalance.setBounds(434, 479, 86, 20);
+		txt_playerBalance.setBounds(975, 608, 100, 20);
+		txt_playerBalance.setEditable(false);
 		game.add(txt_playerBalance);
 		txt_playerBalance.setColumns(10);
 		
 		txt_playerBet = new JTextField ();
-		txt_playerBet.setBounds(434, 509, 86, 20);
+		txt_playerBet.setBounds(470, 661, 100, 20);
+		txt_playerBet.setEditable(false);
 		game.add(txt_playerBet);
 		txt_playerBet.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setBounds(360, 248, 200, 20);
-		game.add(textField);
-		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(434, 448, 86, 20);
-		game.add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(152, 407, 100, 20);
-		game.add(textField_2);
-		textField_2.setColumns(10);
+		int cardW = 90;
+		int cardH = 130;
 		
 		cCard1 = new JLabel ();
-		cCard1.setBounds(166, 108, 86, 127);
+		cCard1.setBounds(215, 348, cardW, cardH);
 		game.add(cCard1);
 		card.append(cCard1);
 		
 		cCard2 = new JLabel ();
-		cCard2.setBounds(262, 108, 88, 127);
+		cCard2.setBounds(cCard1.getX() + 100, cCard1.getY(), cardW, cardH);
 		game.add(cCard2);
 		card.append(cCard2);
 		
 		cCard3 = new JLabel ();
-		cCard3.setBounds(360, 110, 86, 127);
+		cCard3.setBounds(cCard2.getX() + 100, cCard1.getY(), cardW, cardH);
 		game.add(cCard3);
 		card.append(cCard3);
 		
 		cCard4 = new JLabel ();
-		cCard4.setBounds(472, 110, 88, 127);
+		cCard4.setBounds(cCard3.getX() + 100, cCard1.getY(), cardW, cardH);
 		game.add(cCard4);
 		card.append(cCard4);
 		
 		cCard5 = new JLabel ();
-		cCard5.setBounds(578, 108, 88, 127);
+		cCard5.setBounds(cCard4.getX() + 100, cCard1.getY(), cardW, cardH);
 		game.add(cCard5);
 		card.append(cCard5);
 		
 		pocket1 = new JLabel ();
-		pocket1.setBounds(358, 310, 88, 127);
+		pocket1.setBounds(750, 551, cardW, cardH);
 		game.add(pocket1);
 		
 		pocket2 = new JLabel ();
-		pocket2.setBounds(472, 310, 88, 127);
+		pocket2.setBounds(pocket1.getX() + 100, pocket1.getY(), cardW, cardH);
 		game.add(pocket2);
 		
+		
+		int chipSize = 70;
+		
 		bet1 = new JLabel ();
-		bet1.setBounds(50, 551, 70, 70);
+		bet1.setBounds(150, 551, chipSize, chipSize);
 		bet1.setIcon(new ImageIcon (scaledImage(chip1.getImage(), bet1.getWidth(), bet1.getHeight())));
 		bet1.setName("1");
 		game.add(bet1);
 		chips.append(bet1);
 		
 		bet5 = new JLabel ();
-		bet5.setBounds(150, 551, 70, 70);
+		bet5.setBounds(bet1.getX() + 100, bet1.getY(), chipSize, chipSize);
 		bet5.setIcon(new ImageIcon (scaledImage(chip5.getImage(), bet5.getWidth(), bet5.getHeight())));
 		bet5.setName("5");
 		game.add(bet5);
 		chips.append(bet5);
 		
 		bet10 = new JLabel ();
-		bet10.setBounds(250, 551, 70, 70);
+		bet10.setBounds(bet5.getX() + 100, bet1.getY(), chipSize, chipSize);
 		bet10.setIcon(new ImageIcon (scaledImage(chip10.getImage(), bet10.getWidth(), bet10.getHeight())));
 		bet10.setName("10");
 		game.add(bet10);
 		chips.append(bet10);
 		
-		/*bet25 = new JLabel ();
-		bet25.setBounds(350, 551, 70, 70);
+		bet25 = new JLabel ();
+		bet25.setBounds(bet10.getX() + 100, bet1.getY(), chipSize, chipSize);
 		bet25.setIcon(new ImageIcon (scaledImage(chip25.getImage(), bet25.getWidth(), bet25.getHeight())));
 		bet25.setName("25");
 		game.add(bet25);
 		chips.append(bet25);
 		
 		bet50 = new JLabel ();
-		bet50.setBounds(450, 551, 70, 70);
+		bet50.setBounds(bet25.getX() + 100, bet1.getY(), chipSize, chipSize);
 		bet50.setIcon(new ImageIcon (scaledImage(chip50.getImage(), bet50.getWidth(), bet50.getHeight())));
 		bet50.setName("50");
 		game.add(bet50);
 		chips.append(bet50);
 		
 		bet100 = new JLabel ();
-		bet100.setBounds(550, 551, 70, 70);
+		bet100.setBounds(bet50.getX() + 100, bet1.getY(), chipSize, chipSize);
 		bet100.setIcon(new ImageIcon (scaledImage(chip100.getImage(), bet100.getWidth(), bet100.getHeight())));
 		bet100.setName("100");
 		game.add(bet100);
 		chips.append(bet100);
 		
 		bet500 = new JLabel ();
-		bet500.setBounds(650, 551, 70, 70);
+		bet500.setBounds(bet1.getX() + 50, bet1.getY() + chipSize, chipSize, chipSize);
 		bet500.setIcon(new ImageIcon (scaledImage(chip500.getImage(), bet500.getWidth(), bet500.getHeight())));
 		bet500.setName("500");
 		game.add(bet500);
 		chips.append(bet500);
 		
 		bet1000 = new JLabel ();
-		bet1000.setBounds(750, 551, 70, 70);
+		bet1000.setBounds(bet500.getX()+100, bet500.getY(), chipSize, chipSize);
 		bet1000.setIcon(new ImageIcon (scaledImage(chip1000.getImage(), bet1000.getWidth(), bet1000.getHeight())));
 		bet1000.setName("1000");
 		game.add(bet1000);
 		chips.append(bet1000);
 		
-		bet5000 = new JLabel ();
-		bet5000.setBounds(850, 551, 70, 70);
-		bet5000.setIcon(new ImageIcon (scaledImage(chip5000.getImage(), bet5000.getWidth(), bet5000.getHeight())));
-		bet5000.setName("5000");
-		game.add(bet5000);
-		chips.append(bet5000);
+		confirmBet = new JButton ("confirmBet");
+		confirmBet.setBounds(585, 630, 120, 50);
+		game.add(confirmBet);
+		gui_elements.append(confirmBet);
 		
-		bet10000 = new JLabel ();
-		bet10000.setBounds(950, 551, 70, 70);
-		bet10000.setIcon(new ImageIcon (scaledImage(chip10000.getImage(), bet10000.getWidth(), bet10000.getHeight())));
-		bet10000.setName("10000");
-		game.add(bet10000);
-		chips.append(bet10000);*/
+		next = new JButton("Next");
+		next.setBounds(804, 421, 126, 57);
+		game.add(next);
+		gui_elements.append(next);
 		
-		
-		JButton button = new JButton ("checkCards");
-		button.setBounds(23, 397, 111, 40);
-		game.add(button);
-		gui_elements.append(button);
-		
-		JButton button2 = new JButton("Next");
-		button2.setBounds(804, 421, 126, 57);
-		game.add(button2);
-		gui_elements.append(button2);
-		
-		JButton button3 = new JButton("Reset");
-		button3.setBounds(804, 350, 126, 34);
-		game.add(button3);
-		gui_elements.append(button3);
+		reset = new JButton("Reset");
+		reset.setBounds(804, 350, 126, 34);
+		game.add(reset);
+		gui_elements.append(reset);
 		
 		game.add(background);
 	}
@@ -407,20 +398,14 @@ public class GUI extends JFrame
 		playerAmount = amount;
 	}
 	
-	public void setTextFields (List<Card> cCards, Card[] pocket)
+	public void setPocketIcons (Card[] pocket)
 	{	
-		
-		String a = "";
-		cCards.toFirst();
-		while (cCards.hasAccess())
-		{
-			a = a+",  "+cCards.getContent().getID();
-			cCards.next();
-		}
-		
-		textField.setText(a);
-		textField_1.setText(""+pocket[0].getID()+"  ,"+pocket[1].getID());
-
+		pocket1.setIcon(pocket[0].getIcon(pocket1.getWidth(), pocket2.getHeight()));
+		pocket2.setIcon(pocket[1].getIcon(pocket2.getWidth(), pocket2.getHeight()));
+	}
+	
+	public void setFlopIcons (List<Card> cCards)
+	{
 		cCards.toFirst();
 		card.toFirst();
 		while (cCards.hasAccess() && card.hasAccess())
@@ -429,36 +414,21 @@ public class GUI extends JFrame
 			cCards.next();
 			card.next();
 		}
-		pocket1.setIcon(pocket[0].getIcon(pocket1.getWidth(), pocket2.getHeight()));
-		pocket2.setIcon(pocket[1].getIcon(pocket2.getWidth(), pocket2.getHeight()));
 	}
 	
-	public void setTextFields2 (String a)
-	{
-		textField_2.setText(a);
-	}
-	
-	public void nextRound (String a, Card card)
+	public void setTurnOrRiverIcon (String a, Card card)
 	{
 		switch (a)
 		{
 		case "turn":  cCard4.setIcon(card.getIcon(cCard4.getWidth(), cCard4.getHeight()));
-					  textField.setText(textField.getText()+",  "+card.getID());
 					  break;
 		case "river": cCard5.setIcon(card.getIcon(cCard5.getWidth(), cCard5.getHeight()));
-		              textField.setText(textField.getText()+",  "+card.getID());
 		              break;
 		}
 	}
 	
-	public void updateUI (int balance, int bet)
+	public void updateUI (int balance)
 	{
-		/*if (balance < 10000) bet10000.setVisible(false);
-		else bet10000.setVisible(true);
-		
-		if (balance < 5000) bet5000.setVisible(false);
-		else bet5000.setVisible(true);
-		
 		if (balance < 1000) bet1000.setVisible(false);
 		else bet1000.setVisible(true);
 		
@@ -481,24 +451,58 @@ public class GUI extends JFrame
 		else bet5.setVisible(true);
 		
 		if (balance < 1) bet1.setVisible(false);
-		else bet1.setVisible(true);*/
+		else bet1.setVisible(true);
+	}
+	
+	public void disableChips ()
+	{
+		chips.toFirst();
+		while (chips.hasAccess())
+		{
+			chips.getContent().setEnabled(false);
+			chips.next();
+		}
+		confirmBet.setEnabled(false);
+	}
+	
+	public void enableChips ()
+	{
+		chips.toFirst();
+		while (chips.hasAccess())
+		{
+			chips.getContent().setEnabled(true);
+			chips.next();
+		}
+		confirmBet.setEnabled(true);
 	}
 	
 	public void updateBalanceStats (int balance, int bet)
 	{
-		txt_playerBalance.setText(""+balance);
-		txt_playerBet.setText(""+bet);
+		txt_playerBalance.setText("Balance:   "+balance);
+		txt_playerBet.setText("Bet:    "+bet);
 	}
 
 	public void visualiseBotStats (int amount, List <Bot> bots)
 	{
+		Random rndGen = new Random ();
+		int rnd;
 		bots.toFirst();
-		JTextField[] textFields = new JTextField[amount];
+		JTextField[] balances = new JTextField[amount];
+		JTextField[] names = new JTextField[amount];
+		JTextField[] bets = new JTextField[amount];
 		for (int i = 0; i < amount; i++)
 		{
-			textFields[i] = new JTextField (""+bots.getContent().getBalance());
-			textFields[i].setBounds(10+(i*75), 10, 60, 20);
-			game.add(textFields[i]);
+			rnd = rndGen.nextInt(23);
+			bots.getContent().setName(rnd);
+			names[i] = new JTextField ("Name:   "+bots.getContent().getName());
+			names[i].setBounds(10+(i*115), 10, 100, 20);
+			names[i].setEditable(false);
+			game.add(names[i]);
+			balances[i] = new JTextField ("Balance:   "+bots.getContent().getBalance());
+			balances[i].setBounds(10+(i*115), 40, 100, 20);
+			balances[i].setEditable(false);
+			game.add(balances[i]);
+			bets[i] = new JTextField ();
 			bots.next();
 		}
 	}
@@ -507,9 +511,6 @@ public class GUI extends JFrame
 	{
 		txt_playerBalance.setText(null);
 		txt_playerBet.setText(null);
-		textField.setText(null);
-		textField_1.setText(null);
-		textField_2.setText(null);
 		cCard1.setIcon(null);
 		cCard2.setIcon(null);
 		cCard3.setIcon(null);
@@ -517,14 +518,14 @@ public class GUI extends JFrame
 		cCard5.setIcon(null);
 		pocket1.setIcon(null);
 		pocket2.setIcon(null);
-		botAmount.setSelectedIndex(0);
+		//botAmount.setSelectedIndex(0);
 		botDifficulty.setSelectedIndex(0);
 	}
 	
-	public int getSIofAmount ()
+	/*public int getSIofAmount ()
 	{
 		return botAmount.getSelectedIndex();
-	}
+	}*/
 	
 	public int getSIofDifficulty ()
 	{

@@ -25,6 +25,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 	}
 	
 	
+	@SuppressWarnings("static-access")
 	public void mouseClicked (MouseEvent e)
 	{
 		switch (e.getComponent().getName())
@@ -34,11 +35,12 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 							  playerBet--;
 							  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 						  }
-			              else if (e.getButton() == e.BUTTON1 && table.getPlayerBalance() >= 1)
+			              else if (e.getButton() == e.BUTTON1 && table.getPlayerBalance() - playerBet >= 1)
 			              {
 			            	  playerBet++; 
 			            	  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 			              } 
+						  gui.updateUI(table.getPlayerBalance());
 						  break;
 		case "5": 	 	  if (e.getButton() == e.BUTTON3) 
 						  {
@@ -66,6 +68,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 		        				  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);  
 	        				  }
 				          } 
+				          gui.updateUI(table.getPlayerBalance());
 						  break;
 		case "10": 	 	  if (e.getButton() == e.BUTTON3) 
 						  {
@@ -93,9 +96,149 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 							  }
 				          } 
+				          gui.updateUI(table.getPlayerBalance());
 						  break;
-		}
-		
+	    case "25": 	 	  if (e.getButton() == e.BUTTON3) 
+						  {
+							  if (playerBet >= 25)
+							  {
+								  playerBet = playerBet - 25;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else 
+							  {
+								  playerBet = 0;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+						  }
+						  else if (e.getButton() == e.BUTTON1 && table.getPlayerBalance() >= 25)
+				          {
+							  if (table.getPlayerBalance() - playerBet < 25)
+							  {
+								  playerBet = table.getPlayerBalance();
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else
+							  {
+								  playerBet = playerBet + 25; 
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+				          } 
+				          gui.updateUI(table.getPlayerBalance());
+						  break;
+		case "50": 	 	  if (e.getButton() == e.BUTTON3) 
+						  {
+							  if (playerBet >= 50)
+							  {
+								  playerBet = playerBet - 50;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else 
+							  {
+								  playerBet = 0;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+						  }
+						  else if (e.getButton() == e.BUTTON1 && table.getPlayerBalance() >= 50)
+				          {
+							  if (table.getPlayerBalance() - playerBet < 50)
+							  {
+								  playerBet = table.getPlayerBalance();
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else
+							  {
+								  playerBet = playerBet + 50; 
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+				          } 
+				          gui.updateUI(table.getPlayerBalance());
+						  break;
+	  case "100": 	 	  if (e.getButton() == e.BUTTON3) 
+						  {
+							  if (playerBet >= 100)
+							  {
+								  playerBet = playerBet - 100;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else 
+							  {
+								  playerBet = 0;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+						  }
+						  else if (e.getButton() == e.BUTTON1 && table.getPlayerBalance() >= 100)
+				          {
+							  if (table.getPlayerBalance() - playerBet < 100)
+							  {
+								  playerBet = table.getPlayerBalance();
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else
+							  {
+								  playerBet = playerBet + 100; 
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+				          } 
+				          gui.updateUI(table.getPlayerBalance());
+						  break;
+	   case "500": 	 	  if (e.getButton() == e.BUTTON3) 
+						  {
+							  if (playerBet >= 500)
+							  {
+								  playerBet = playerBet - 500;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else 
+							  {
+								  playerBet = 0;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+						  }
+						  else if (e.getButton() == e.BUTTON1 && table.getPlayerBalance() >= 500)
+				          {
+							  if (table.getPlayerBalance() - playerBet < 500)
+							  {
+								  playerBet = table.getPlayerBalance();
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else
+							  {
+								  playerBet = playerBet + 500; 
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+				          } 
+				          gui.updateUI(table.getPlayerBalance());
+						  break;
+	  case "1000": 	 	  if (e.getButton() == e.BUTTON3) 
+						  {
+							  if (playerBet >= 1000)
+							  {
+								  playerBet = playerBet - 1000;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else 
+							  {
+								  playerBet = 0;
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+						  }
+						  else if (e.getButton() == e.BUTTON1 && table.getPlayerBalance() >= 1000)
+				          {
+							  if (table.getPlayerBalance() - playerBet < 1000)
+							  {
+								  playerBet = table.getPlayerBalance();
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+							  else
+							  {
+								  playerBet = playerBet + 1000; 
+								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
+							  }
+				          } 
+				          gui.updateUI(table.getPlayerBalance());
+						  break;
+		}	
 	}
 	
 	
@@ -108,12 +251,12 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 		
 		else if (e.getActionCommand().equals("Continue"))
 		{
-			new Help ("");
+			new Help ("continue");
 		}
 		
 		else if (e.getActionCommand().equals("Options"))
 		{
-			gui.setCL("options");
+			new Help ("options");
 		}
 		else if (e.getActionCommand().equals("Start Game"))
 		{
@@ -122,26 +265,24 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 			{
 				try
 				{
-					if (gui.getSIofAmount() != 0 && gui.getSIofDifficulty() != 0)
+					if (/*gui.getSIofAmount() != 0 && */gui.getSIofDifficulty() != 0)
 					{
-						table = new Table (gui.getSIofAmount()+1, gui.getSIofDifficulty());
+						table = new Table (/*gui.getSIofAmount()+1*/5, gui.getSIofDifficulty());
 						table.preflop();
+						//table.setRndBlinds();
 						gui.setCL("game");
-						gui.setTextFields(table.getCCards(), table.getPPocket());
-						gui.visualiseBotStats(gui.getSIofAmount()+1, table.getBots());
+						gui.setPocketIcons(table.getPPocket());
+						gui.visualiseBotStats(/*gui.getSIofAmount()+1*/5, table.getBots());
 						done = true;
 					}
-					else new Help ("");
+					else new Help ("start game"); done = true;
 				}
 				catch (NullPointerException ex)
 				{
 					System.out.println("Restart");
 				}
 			}
-		}
-		else if (e.getActionCommand().equals("checkCards"))
-		{
-			gui.setTextFields2(table.checkPCards());
+			gui.updateUI(table.getPlayerBalance());
 		}
 		else if (e.getActionCommand().equals("Next"))
 		{
@@ -149,19 +290,19 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 			{
 			case 0: table.setCCard("flop");
 					a++;
-					gui.setTextFields(table.getCCards(), table.getPPocket());
+					gui.setFlopIcons(table.getCCards());
 					break;
 			case 1: table.setCCard("turn");
 					a++;
-					List<Card> temp2 = table.getCCards();
-					temp2.toLast();
-					gui.nextRound("turn", temp2.getContent());
+					List<Card> turn = table.getCCards();
+					turn.toLast();
+					gui.setTurnOrRiverIcon("turn", turn.getContent());
 					break;
 			case 2: table.setCCard("river");
 					a++;
-					List<Card> temp = table.getCCards();
-					temp.toLast();
-					gui.nextRound("river", temp.getContent());
+					List<Card> river = table.getCCards();
+					river.toLast();
+					gui.setTurnOrRiverIcon("river", river.getContent());
 					break;
 			default: new Help ("");
 			}
@@ -174,10 +315,21 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 			a = 0;
 			playerBet = 0;
 		}
-		else if (e.getActionCommand().equals("Bet"))
+		else if (e.getActionCommand().equals("confirmBet"))
 		{
-			table.playerBet(playerBet);
-			playerBet = 0;
+			if (playerBet == 0) new Help ("bet");
+			else
+			{
+				table.playerBet(playerBet);
+				playerBet = 0;
+				gui.disableChips();
+				table.botBet();
+			}
+		}
+		else if (e.getActionCommand().equals("nextRound") && a > 2)
+		{
+			a = 0;
+			table.newDeck();
 		}
 	}
 }
