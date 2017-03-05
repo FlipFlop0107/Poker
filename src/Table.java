@@ -1,5 +1,13 @@
 import java.util.Random;
 
+/**
+ * Die Klasse dient als Spielfeld des Spiels. 
+ * Sie verwaltet sämtliche Spieler und den Dealer und sorgt für deren Kommunikation.
+ * 
+ * @author Philipp Dobieszweski
+ *
+ */
+
 public class Table
 {
 	private Dealer dealer;
@@ -8,6 +16,15 @@ public class Table
 	private List <Bot> bots;
 	private Player player;
 	private int botAmount;
+	
+	/**
+	 * Konstruktor wird die Anzahl der Bots und die Schwierigkeits-ID übergeben.
+	 * Er instanziiert die Objekte {@link Player}, {@link Dealer} und eine {@link List} aus Objekten vom Typ {@link Card}.
+	 * Des Weiteren wird eine {@link List} aus Objekten vom Typ {@link Bot} instanziiert.
+	 * 
+	 * @param botAmount gewünschte Anzahl der Bots
+	 * @param botDifficulty Schwierigkeits-ID
+	 */
 	
 	public Table (int botAmount, int botDifficulty)
 	{
@@ -23,16 +40,34 @@ public class Table
 		}
 	}
 	
+	/**
+	 * Erhält je nach Kartenstapeltyp die Karten von dem {@link Dealer}.
+	 * 
+	 * @param a
+	 */
+	
 	@SuppressWarnings("unchecked")
 	public void setCCard (String a)
 	{
 		cCards.concat(dealer.getCards(a));
 	}
 	
+	/**
+	 * Gibt die Karten zurück.
+	 * 
+	 * @return
+	 */
+	
 	public List<Card> getCCards ()
 	{
 		return cCards; 
 	}
+	
+	/**
+	 * Gibt den Pot zurück.
+	 * 
+	 * @return Pot
+	 */
 	
 	public int getPot ()
 	{
