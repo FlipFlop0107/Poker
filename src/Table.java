@@ -43,7 +43,7 @@ public class Table
 	/**
 	 * Erhält je nach Kartenstapeltyp die Karten von dem {@link Dealer}.
 	 * 
-	 * @param a
+	 * @param a Kartenstapeltyp
 	 */
 	
 	@SuppressWarnings("unchecked")
@@ -55,7 +55,7 @@ public class Table
 	/**
 	 * Gibt die Karten zurück.
 	 * 
-	 * @return
+	 * @return Karten
 	 */
 	
 	public List<Card> getCCards ()
@@ -74,20 +74,42 @@ public class Table
 		return pot;
 	}
 	
+	/**
+	 * Fügt Einsatz zum Pot hinzu.
+	 * 
+	 * @param bet Einsatz
+	 */
+	
 	public void setPot (int bet)
 	{
 		pot = pot + bet;
 	}
+	
+	/**
+	 * Gibt die Karten eines Spielers zurück.
+	 * 
+	 * @return Karten eines Spielers
+	 */
 	
 	public Card[] getPPocket ()
 	{
 		return player.getPocket();
 	}
 	
+	/**
+	 * Gibt eine {@link List} aus Objekten vom Typ {@link Bot} zurück.
+	 * 
+	 * @return
+	 */
+	
 	public List<Bot> getBots ()
 	{
 		return bots;
 	}
+	
+	/**
+	 * Setzt zufälligen Blind.
+	 */
 	
 	public void setRndBlinds ()
 	{
@@ -114,6 +136,10 @@ public class Table
 		
 	}
 	
+	/**
+	 * Verteilt die Karten gleichmäßig auf die Spieler.
+	 */
+	
 	@SuppressWarnings("unchecked")
 	public void preflop()
 	{
@@ -126,10 +152,22 @@ public class Table
 		player.setPocket(dealer.getCards("pocket"));
 	}
 	
+	/**
+	 * Gibt das Guthaben der {@link Player} zurück.
+	 * 
+	 * @return Guthaben
+	 */
+	
 	public int getPlayerBalance ()
 	{
 		return player.getBalance();
 	}
+	
+	/**
+	 * Gibt die Guthaben der Bots zurück.
+	 * 
+	 * @return Array aus Guthaben
+	 */
 	
 	public int[] getBotBalances ()
 	{
@@ -145,10 +183,20 @@ public class Table
 		return balances;
 	}
 	
+	/**
+	 * Setzt Spielereinsatz.
+	 * 
+	 * @param bet
+	 */
+	
 	public void playerBet (int bet)
 	{
 		player.bet(bet);
 	}
+	
+	/**
+	 * Setzt Boteinsatz.
+	 */
 	
 	public void botBet ()
 	{
@@ -160,10 +208,20 @@ public class Table
 		}
 	}
 	
+	/**
+	 * Gibt Karten der Spieler zurück.
+	 * 
+	 * @return Karten
+	 */
+	
 	public String checkPCards ()
 	{
 		return player.checkCards(cCards);
 	}
+	
+	/**
+	 * Setzt ein neues Deck.
+	 */
 	
 	public void newDeck ()
 	{
