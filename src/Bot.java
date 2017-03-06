@@ -1,7 +1,7 @@
 import java.util.Random;
 
 /**
- * Die Klassse Bot simuliert das Spielverhalten eines Spielers. Er reagiert auf logisch auf den Spielablauf. Er extendet von der Klasse {@link Player}
+ * Die Klassse Bot simuliert das Spielverhalten eines Spielers. Er reagiert logisch auf den Spielablauf. Er extendet von der Klasse {@link Player}
  * 
  * @author Philipp Dobieszewski 
  *
