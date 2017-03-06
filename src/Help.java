@@ -3,13 +3,25 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import oracle.jrockit.jfr.JFR;
+
+/**
+ * Klasse stellt eine Hilfe-GUI dar. Sie extendet vom {@link JFrame}.
+ * 
+ * @author Philipp Dobieszewski
+ *
+ */
+
 @SuppressWarnings("serial")
 public class Help extends JFrame
 {
 	List <JButton> buttons;
 	JPanel contP;
 	
-	
+	/**
+	 * Konstruktor instanziiert die GUI-Komponenten.
+	 * @param name Name der Hilfe.
+	 */
 	public Help (String name)
 	{
 		setResizable(false);
