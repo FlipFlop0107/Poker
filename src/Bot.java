@@ -53,7 +53,7 @@ public class Bot extends Player
 					else if (checkCards(cCards).contains("three")) lastBet = bet((int) (balance*0.4));
 					else if (checkCards(cCards).contains("two")) lastBet = bet((int) (balance*0.3));
 					else if (checkCards(cCards).contains("one")) lastBet = bet((int) (balance*0.2));
-					else fold(); lastBet = bet(20);
+					else fold();
 			/*case 2: if (checkCards(cCards).contains("royal")) bet((int) balance);
 					else if (checkCards(cCards).contains("straightFlush"))
 					{

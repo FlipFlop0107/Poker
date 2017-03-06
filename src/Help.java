@@ -1,9 +1,6 @@
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import oracle.jrockit.jfr.JFR;
 
 /**
  * Klasse stellt eine Hilfe-GUI dar. Sie extendet vom {@link JFrame}.
@@ -15,7 +12,6 @@ import oracle.jrockit.jfr.JFR;
 @SuppressWarnings("serial")
 public class Help extends JFrame
 {
-	List <JButton> buttons;
 	JPanel contP;
 	
 	/**
@@ -32,7 +28,6 @@ public class Help extends JFrame
 		contP.setBounds(0, 0, 306, 205);
 		contP.setLayout(null);
 		getContentPane().add(contP);
-		buttons = new List <JButton> ();
 		
 		switch (name)
 		{
