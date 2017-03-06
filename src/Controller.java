@@ -280,21 +280,17 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 		}
 		else if (e.getActionCommand().equals("Start Game"))
 		{
-			if (/*gui.getSIofAmount() != 0 && */gui.getSIofDifficulty() != 0)
+			if (gui.getSIofAmount() != 0 && gui.getSIofDifficulty() != 0)
 			{
-				table = new Table (/*gui.getSIofAmount()+1*/5, gui.getSIofDifficulty());
+				table = new Table (gui.getSIofAmount()+1, gui.getSIofDifficulty());
 				//table.setRndBlinds();
 				gui.setCL("game");
-				gui.visualiseBotStats(/*gui.getSIofAmount()+1*/5, table.getBots());
+				gui.visualiseBotStats(gui.getSIofAmount()+1, table.getBots());
 				gui.disableChips();
 						
 			}
 			else new Help ("start game");
 			gui.updateChips(table.getPlayerBalance());
-		}
-		else if (e.getActionCommand().equals("Next"))
-		{
-			
 		}
 		else if (e.getActionCommand().equals("Reset"))
 		{
@@ -314,24 +310,28 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 				table.playerBet(playerBet);
 				playerBet = 0;
 				gui.disableChips();
-				gui.updateBotStats(/*gui.getSIofAmount+1*/5, table.getBots());
+				gui.countDown();
+				gui.updateBotStats(gui.getSIofAmount()+1, table.getBots());
 				switch (a)
 				{
 				case 0: table.setCCard("flop");
 						a++;
 						gui.setFlopIcons(table.getCCards());
+						gui.enableChips();
 						break;
 				case 1: table.setCCard("turn");
 						a++;
 						List<Card> turn = table.getCCards();
 						turn.toLast();
 						gui.setTurnOrRiverIcon("turn", turn.getContent());
+						gui.enableChips();
 						break;
 				case 2: table.setCCard("river");
 						a++;
 						List<Card> river = table.getCCards();
 						river.toLast();
 						gui.setTurnOrRiverIcon("river", river.getContent());
+						gui.enableChips();
 						break;
 				default: new Help ("");
 				}

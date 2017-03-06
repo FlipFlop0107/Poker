@@ -61,6 +61,7 @@ public class GUI extends JFrame
 	private JLabel logo;
 	private JLabel intro_text;
 	private JLabel background;
+	private JLabel count;
 	
 	private JLabel cCard1;
 	private JLabel cCard2;
@@ -88,11 +89,10 @@ public class GUI extends JFrame
 	private JButton mm_options;
 	private JButton startGame;
 	private JButton confirmBet;
-	private JButton next;
 	private JButton reset;
 	private JButton start;
 	
-	//private JComboBox botAmount;
+	private JComboBox botAmount;
 	private JComboBox botDifficulty;
 	
 	private JTextField txt_playerBalance;
@@ -229,11 +229,11 @@ public class GUI extends JFrame
 		contP.add(startOptions, "start options");
 		startOptions.setLayout(null);
 		
-		/*String[] amount = {"Bot Amount?", "2", "3", "4", "5", "6"};
+		String[] amount = {"Bot Amount?", "2", "3", "4", "5", "6"};
 		botAmount = new JComboBox(amount);
 		botAmount.setBounds(191, 188, 86, 20);
 		startOptions.add(botAmount);
-		gui_elements.append(botAmount);*/
+		gui_elements.append(botAmount);
 		
 		String[] difficulty = {"Difficulty?", "Easy", "Medium", "Hard"};
 		botDifficulty = new JComboBox(difficulty);
@@ -250,6 +250,11 @@ public class GUI extends JFrame
 		game = new JPanel();
 		contP.add(game, "game");
 		game.setLayout(null);
+		
+		count = new JLabel();
+		count.setBounds(450, 155, 70, 70);
+		count.setVisible(false);
+		game.add(count);
 		
 		sep = new JSeparator ();
 		sep.setBounds(0, 540, 1104, 20);
@@ -373,13 +378,8 @@ public class GUI extends JFrame
 		game.add(confirmBet);
 		gui_elements.append(confirmBet);
 		
-		next = new JButton("Next");
-		next.setBounds(804, 421, 126, 57);
-		game.add(next);
-		gui_elements.append(next);
-		
 		reset = new JButton("Reset");
-		reset.setBounds(804, 350, 126, 34);
+		reset.setBounds(975, 11, 126, 34);
 		game.add(reset);
 		gui_elements.append(reset);
 		
@@ -669,10 +669,10 @@ public class GUI extends JFrame
 		botDifficulty.setSelectedIndex(0);
 	}
 	
-	/*public int getSIofAmount ()
+	public int getSIofAmount ()
 	{
 		return botAmount.getSelectedIndex();
-	}*/
+	}
 	
 	/**
 	 * Gibt den Bot-Schwierigkeitsgrad zurück.
@@ -708,4 +708,20 @@ public class GUI extends JFrame
     {
         start.setVisible(status);
     }
+	
+	public void countDown ()
+	{
+		count.setVisible(true);
+		count.setText("3");
+		try {Thread.sleep(1000);}
+		catch (InterruptedException ex){}
+		count.setText("2");
+		try {Thread.sleep(1000);}
+		catch (InterruptedException ex){}
+		count.setText("1");
+		try {Thread.sleep(1000);}
+		catch (InterruptedException ex){}
+		count.setText(null);
+		count.setVisible(false);
+	}
 }
