@@ -3,6 +3,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Die Klasse reagiert auf Nutzereingaben und setzt diese um. Sie extendet vom {@link MouseAdapter} und implementeirt den {@link ActionListener}.
+ * 
+ * @author Philipp Dobieszewski
+ *
+ */
 
 public class Controller extends MouseAdapter implements ActionListener/*, MouseListener*/
 {
@@ -12,6 +18,9 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 	private int playerBet = 0;
 	
 	
+	/**
+	 * Konstruktor instanziiert die GUI und über gibt die Action- und MouseListener.
+	 */
 	public Controller ()
 	{
 		gui = new GUI ();
@@ -19,11 +28,19 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 		gui.setMouseListeners(this);
 	}
 	
+	/**
+	 * Instanziiert den {@link Controller}.
+	 * 
+	 * @param args Kommandozeilenparameter
+	 */
 	public static void main(String[] args)
 	{
 		new Controller ();
 	}
 	
+	/**
+	 * Führt Aktionen bei einem Mausklick aus.
+	 */
 	
 	@SuppressWarnings("static-access")
 	public void mouseClicked (MouseEvent e)
@@ -241,6 +258,9 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 		}	
 	}
 	
+	/**
+	 * Führt Aktionen bei einem Button-{@link ActionEvent} aus.
+	 */
 	
 	public void actionPerformed (ActionEvent e)
 	{
