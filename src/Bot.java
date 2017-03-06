@@ -1,5 +1,12 @@
 import java.util.Random;
 
+/**
+ * Die Klassse Bot simuliert das Spielverhalten eines Spielers. Er reagiert auf logisch auf den Spielablauf. Er extendet von der Klasse {@link Player}
+ * 
+ * @author Philipp Dobieszewski 
+ *
+ */
+
 public class Bot extends Player
 {
 	private int lastBet;
@@ -171,10 +178,22 @@ public class Bot extends Player
 		}
 	}
 	
+	/**
+	 * Gibt den letzten Einsatz zurück.
+	 * 
+	 * @return letzter Einsatz
+	 */
+	
 	public int getLastBet ()
 	{
 		return lastBet;
 	}
+	
+	/**
+	 * Gibt den Bot-Namen zurück.
+	 * 
+	 * @return Bot-Name
+	 */
 	
 	public String getName ()
 	{

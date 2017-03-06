@@ -92,6 +92,7 @@ public class GUI extends JFrame
 	private JButton reset;
 	private JButton start;
 	
+
 	private JComboBox botAmount;
 	private JComboBox botDifficulty;
 	
@@ -669,6 +670,11 @@ public class GUI extends JFrame
 		botDifficulty.setSelectedIndex(0);
 	}
 	
+	/**
+	 * Gibt den ausgewählten Index von botAmount zurück.
+	 * 
+	 * @return Index
+	 */
 	public int getSIofAmount ()
 	{
 		return botAmount.getSelectedIndex();
