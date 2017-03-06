@@ -1,10 +1,22 @@
+/**
+ * Klasse überprüft, ob bei Karten bestimmte Regeln vorliegen. 
+ * 
+ * @author Philipp Dobieszewski
+ *
+ */
+
 public class Rules
 {
 	private List<Card> cardlist;
 	private Card [] cards;
 	private int a;
 	
-	
+	/**
+	 * Konstruktor fügt Spielerkarten und Spielkarten in ein Array zusammen.
+	 * 
+	 * @param cCards
+	 * @param pocket
+	 */
 	public Rules (List<Card> cCards, List<Card> pocket)
 	{
 		pocket.concat(cCards);
@@ -19,7 +31,11 @@ public class Rules
 		}
 	}
 	
-	
+	/**
+	 * Überprüft die Karten auf Regeln.
+	 * 
+	 * @return Name der Regel
+	 */
 	public String checkCards ()
 	{
 		sort(1);

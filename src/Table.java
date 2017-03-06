@@ -1,5 +1,13 @@
 import java.util.Random;
 
+/**
+ * Die Klasse dient als Spielfeld des Spiels. 
+ * Sie verwaltet sämtliche Spieler und den Dealer und sorgt für deren Kommunikation.
+ * 
+ * @author Philipp Dobieszweski
+ *
+ */
+
 public class Table
 {
 	private Dealer dealer;
@@ -8,6 +16,15 @@ public class Table
 	private List <Bot> bots;
 	private Player player;
 	private int botAmount;
+	
+	/**
+	 * Konstruktor wird die Anzahl der Bots und die Schwierigkeits-ID übergeben.
+	 * Er instanziiert die Objekte {@link Player}, {@link Dealer} und eine {@link List} aus Objekten vom Typ {@link Card}.
+	 * Des Weiteren wird eine {@link List} aus Objekten vom Typ {@link Bot} instanziiert.
+	 * 
+	 * @param botAmount gewünschte Anzahl der Bots
+	 * @param botDifficulty Schwierigkeits-ID
+	 */
 	
 	public Table (int botAmount, int botDifficulty)
 	{
@@ -23,36 +40,76 @@ public class Table
 		}
 	}
 	
+	/**
+	 * Erhält je nach Kartenstapeltyp die Karten von dem {@link Dealer}.
+	 * 
+	 * @param a Kartenstapeltyp
+	 */
+	
 	@SuppressWarnings("unchecked")
 	public void setCCard (String a)
 	{
 		cCards.concat(dealer.getCards(a));
 	}
 	
+	/**
+	 * Gibt die Karten zurück.
+	 * 
+	 * @return Karten
+	 */
+	
 	public List<Card> getCCards ()
 	{
 		return cCards; 
 	}
+	
+	/**
+	 * Gibt den Pot zurück.
+	 * 
+	 * @return Pot
+	 */
 	
 	public int getPot ()
 	{
 		return pot;
 	}
 	
+	/**
+	 * Fügt Einsatz zum Pot hinzu.
+	 * 
+	 * @param bet Einsatz
+	 */
+	
 	public void setPot (int bet)
 	{
 		pot = pot + bet;
 	}
+	
+	/**
+	 * Gibt die Karten eines Spielers zurück.
+	 * 
+	 * @return Karten eines Spielers
+	 */
 	
 	public Card[] getPPocket ()
 	{
 		return player.getPocket();
 	}
 	
+	/**
+	 * Gibt eine {@link List} aus Objekten vom Typ {@link Bot} zurück.
+	 * 
+	 * @return
+	 */
+	
 	public List<Bot> getBots ()
 	{
 		return bots;
 	}
+	
+	/**
+	 * Setzt zufälligen Blind.
+	 */
 	
 	public void setRndBlinds ()
 	{
@@ -79,6 +136,10 @@ public class Table
 		
 	}
 	
+	/**
+	 * Verteilt die Karten gleichmäßig auf die Spieler.
+	 */
+	
 	@SuppressWarnings("unchecked")
 	public void preflop()
 	{
@@ -91,15 +152,37 @@ public class Table
 		player.setPocket(dealer.getCards("pocket"));
 	}
 	
+	/**
+	 * Gibt das Guthaben der {@link Player} zurück.
+	 * 
+	 * @return Guthaben
+	 */
+	
 	public int getPlayerBalance ()
 	{
 		return player.getBalance();
 	}
 	
+	/**
+	 * Gibt die Guthaben der Bots zurück.
+	 * 
+	 * @return Array aus Guthaben
+	 */
+	
+	/**
+	 * Setzt Spielereinsatz.
+	 * 
+	 * @param bet
+	 */
+	
 	public void playerBet (int bet)
 	{
 		player.bet(bet);
 	}
+	
+	/**
+	 * Setzt Boteinsatz.
+	 */
 	
 	public void botBet ()
 	{
@@ -111,10 +194,20 @@ public class Table
 		}
 	}
 	
+	/**
+	 * Gibt Karten der Spieler zurück.
+	 * 
+	 * @return Karten
+	 */
+	
 	public String checkPCards ()
 	{
 		return player.checkCards(cCards);
 	}
+	
+	/**
+	 * Setzt ein neues Deck.
+	 */
 	
 	public void newDeck ()
 	{

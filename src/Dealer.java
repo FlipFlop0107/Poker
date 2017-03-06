@@ -1,12 +1,30 @@
 
+/**
+ * Die Klasse verwaltet das {@link Deck}.
+ * 
+ * @author Philipp Dobieszewski
+ *
+ */
+
 public class Dealer
 {
 	private Deck deck;
+	
+	/**
+	 * Konstruktor instanziiert das {@link Deck}.
+	 */
 	
 	public Dealer ()
 	{
 		deck = new Deck ();
 	}
+	
+	/**
+	 * Gibt Karten je nach Kartenstapeltyp zurück.
+	 * 
+	 * @param a Kartenstapeltyp
+	 * @return Karten
+	 */
 	
 	@SuppressWarnings("rawtypes")
 	public List getCards (String a)
@@ -31,6 +49,10 @@ public class Dealer
 		default:       return null;
 		}	
 	}
+	
+	/**
+	 * Instanziiert ein neues {@link Deck}.
+	 */
 	
 	public void newDeck ()
 	{
