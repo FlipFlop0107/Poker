@@ -5,12 +5,26 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Klasse dient als Modell für den Karten. Sie beinhaltet eine Farbe (Kreuz, Karo, etc.) und einen Kartenwert (Bube, Dame, Ass, etc.).
+ * 
+ * 
+ * @author Philipp Dobieszewski
+ *
+ */
+
 public class Card
 {
 	private int ID;
 	private int rank;
 	private int suit;
 	
+	/**
+	 * Konstruktor wird Kartentyp und einen Kartenwert übergeben.
+	 * 
+	 * @param rank Kartenwert
+	 * @param suit Farbe
+	 */
 	
 	public Card (int rank, int suit)
 	{
@@ -18,22 +32,47 @@ public class Card
 		this.suit = suit;
 	}
 
-
+	/**
+	 * Gibt Karten-ID zurück.
+	 * 
+	 * @return Karten-ID
+	 */
+	
 	public int getID ()
 	{
 		ID = suit*100+rank;
 		return ID;
 	}
 	
+	/**
+	 * Gibt Kartenwert zurück.
+	 * 
+	 * @return Kartenwert
+	 */
+	
 	public int getRank()
 	{
 		return rank;
 	}
 
+	/**
+	 * Gibt Farbe der Karte zurück.
+	 * 
+	 * @return Farbe
+	 */
+	
 	public int getSuit()
 	{
 		return suit; //1 = Clubs, 2 = Diamonds, 3 = Hearts, 4 = Spades
 	}
+	
+	/**
+	 * Gibt je nach Karten-ID das passend skalierte {@link ImageIcon} zurück.
+	 * 
+	 * @param w Breite
+	 * @param h Höhe
+	 * @return ImageIcon
+	 */
 	
 	public ImageIcon getIcon (int w, int h)
 	{
@@ -94,6 +133,15 @@ public class Card
 			default:  return null;//new ImageIcon (scaledImage(new ImageIcon (Card.class.getResource("/images/cards/ace_of_spades.png")).getImage(), w, h));
 		}
 	}
+	
+	/**
+	 * Methode skaliert übergebendes {@link Image}.
+	 * 
+	 * @param img Bild
+	 * @param w Breite
+	 * @param h Höhe
+	 * @return skalierte Bild
+	 */
 	
 	private Image scaledImage (Image img, int w, int h)
 	{

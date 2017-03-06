@@ -9,9 +9,16 @@ public class Bot extends Player
 	public Bot (int difficulty)
 	{	
 		this.difficulty = difficulty;
+		System.out.println(getDifficulty());
 		name = "-  N. N.  -";
 	}
 	
+	
+	/**
+	 * Gibt den zur Schwierigkeits-ID zugehörigen Schwierigkeitsnamen zurück.
+	 * 
+	 * @return Name der Schwierigkeit
+	 */
 	
 	public String getDifficulty ()
 	{
@@ -23,6 +30,10 @@ public class Bot extends Player
 		default: return "invalid difficulty";
 		}
 	}
+	
+	/*
+	 * Reagiert auf eine Kartenfolge je nach Schwierigkeitsstufe.
+	 */
 	
 	public void botBet (List<Card> cCards)
 	{
@@ -169,6 +180,12 @@ public class Bot extends Player
 	{
 		return name;
 	}
+	
+	/**
+	 * Weist den Bot einen von 23 Namen zu. 
+	 * 
+	 * @param rnd Zufallszahl für die Namensauswahl
+	 */
 	
 	public void setName (int rnd)
 	{

@@ -1,10 +1,21 @@
 import java.util.Random;
 
+/**
+ * Die Klasse verwaltet alle Spielkarten. Sie stellt sicher das jede Karte nur einmal vorhanden ist.
+ * 
+ * @author Philipp Dobieszewski
+ *
+ */
+
 public class Deck
 {
 	public Stack<Card> deck;
 	private Card [] cards;
 	
+	/**
+	 * Methode instanziiert ein Karten-Array mit jeder möglichen Kombination aus Kartenfarbe und Kartenwert
+	 * und vermischt diese.
+	 */
 	
 	public Deck ()
 	{
@@ -28,7 +39,9 @@ public class Deck
 		mix();
 	}
 	
-	
+	/**
+	 * Methode mischt die Karten.
+	 */
 	public void mix ()
 	{
 		Random rndGen = new Random ();
@@ -74,6 +87,12 @@ public class Deck
 		    
 		} 
 	}
+	
+	/**
+	 * Methode gibt die oberste Karte zurück und entfernt sie.
+	 * 
+	 * @return Karte
+	 */
 	
 	public Card getCard ()
 	{

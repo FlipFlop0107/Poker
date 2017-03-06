@@ -23,6 +23,13 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+/**
+ * Klasse dient der Darstellung der Software. Die Klasse extendet von dem {@link JFrame}.
+ * 
+ * @author Philipp Dobieszewski
+ *
+ */
+
 @SuppressWarnings("serial")
 public class GUI extends JFrame
 {
@@ -86,7 +93,7 @@ public class GUI extends JFrame
 	private JButton start;
 	
 	//private JComboBox botAmount;
-	private JComboBox<String> botDifficulty;
+	private JComboBox botDifficulty;
 	
 	private JTextField txt_playerBalance;
 	private JTextField txt_playerBet;
@@ -97,6 +104,9 @@ public class GUI extends JFrame
 	
 	private JSeparator sep;
 	
+	/**
+	 * Instanziiert die GUI-Komponenten
+	 */
 	
 	public GUI ()
 	{
@@ -376,6 +386,10 @@ public class GUI extends JFrame
 		game.add(background);
 	}
 	
+	/**
+	 * Fügt {@link ActionListener} zu GUI-Komponenten hinzu.
+	 * @param ac {@link ActionListener}
+	 */
 	
 	@SuppressWarnings("rawtypes")
 	public void setActionListeners (ActionListener ac)
@@ -395,6 +409,12 @@ public class GUI extends JFrame
 	    }
 	}
 	
+	/**
+	 * Fügt {@link MouseListener} zu GUI-Komponenten hinzu.
+	 * 
+	 * @param l {@link MouseListener}
+	 */
+	
 	public void setMouseListeners (MouseAdapter l)
 	{
 		chips.toFirst ();
@@ -405,36 +425,78 @@ public class GUI extends JFrame
 		}		
 	}
 	
+	/**
+	 * Zeig bestimmtes {@link JPanel} an.
+	 * 
+	 * @param name Indentifikationsname
+	 */
+	
 	public void setCL (String name)
 	{
 		cl.show(contP, name);
 	}
+	
+	/**
+	 * Gibt Schwierigkeitsgrad zurück.
+	 * 
+	 * @return Schwierigkeitsgrad
+	 */
 	
 	public int getDifficulty ()
 	{
 		return difficulty;
 	}
 	
+	/**
+	 * Setzt Schwierigkeitsgrad.
+	 * 
+	 * @param difficulty Schwierigkeitsgrad
+	 */
+	
 	public void setDificulty (int difficulty)
 	{
 		this.difficulty = difficulty;
 	}
+	
+	/**
+	 * Gibt Anzahl der Mitspieler zurück.
+	 * 
+	 * @return Anzahl der Spieler
+	 */
 	
 	public int getPlayerAmount ()
 	{
 		return playerAmount;
 	}
 	
+	/**
+	 * Setzt Anzahl der Spieler.
+	 * 
+	 * @param amount Anzahl der Spieler
+	 */
+	
 	public void setPlayerAmount (int amount)
 	{
 		playerAmount = amount;
 	}
+	
+	/**
+	 * Setzt Icons für die Spielerkarten.
+	 * 
+	 * @param pocket Icons
+	 */
 	
 	public void setPocketIcons (Card[] pocket)
 	{	
 		pocket1.setIcon(pocket[0].getIcon(pocket1.getWidth(), pocket2.getHeight()));
 		pocket2.setIcon(pocket[1].getIcon(pocket2.getWidth(), pocket2.getHeight()));
 	}
+	
+	/**
+	 * Setzt die Icons der offenen Karten.
+	 * 
+	 * @param cCards Karten
+	 */
 	
 	public void setFlopIcons (List<Card> cCards)
 	{
@@ -448,6 +510,13 @@ public class GUI extends JFrame
 		}
 	}
 	
+	/**
+	 * Setzt entweder Turn- oder Rivericon.
+	 * 
+	 * @param a Turn oder River
+	 * @param card Karte
+	 */
+	
 	public void setTurnOrRiverIcon (String a, Card card)
 	{
 		switch (a)
@@ -458,6 +527,12 @@ public class GUI extends JFrame
 		              break;
 		}
 	}
+	
+	/**
+	 * Aktualisiert die Spielchips.
+	 * 
+	 * @param balance Guthaben
+	 */
 	
 	public void updateChips (int balance)
 	{
@@ -486,6 +561,10 @@ public class GUI extends JFrame
 		else bet1.setVisible(true);
 	}
 	
+	/**
+	 * Deaktiviert die Chip-Buttons.
+	 */
+	
 	public void disableChips ()
 	{
 		chips.toFirst();
@@ -496,6 +575,10 @@ public class GUI extends JFrame
 		}
 		confirmBet.setEnabled(false);
 	}
+	
+	/**
+	 * Aktiviert die Chip-Buttons.
+	 */
 	
 	public void enableChips ()
 	{
@@ -508,12 +591,26 @@ public class GUI extends JFrame
 		confirmBet.setEnabled(true);
 	}
 	
+	/**
+	 * Aktualisiert die Kontostände.
+	 * 
+	 * @param balance Guthaben
+	 * @param bet Einsatz
+	 */
+	
 	public void updateBalanceStats (int balance, int bet)
 	{
 		txt_playerBalance.setText("Balance:   "+balance);
 		txt_playerBet.setText("Bet:    "+bet);
 	}
 
+	/**
+	 * Aktualisiert die Bot-Informationen
+	 * 
+	 * @param amount Anzahl der Bots
+	 * @param bots Bots
+	 */
+	
 	public void visualiseBotStats (int amount, List <Bot> bots)
 	{
 		names = new JTextField[amount];
@@ -553,6 +650,10 @@ public class GUI extends JFrame
 		}
 	}
 	
+	/**
+	 * Setzt das Spiel zurück.
+	 */
+	
 	public void resetGame ()
 	{
 		txt_playerBalance.setText(null);
@@ -568,20 +669,30 @@ public class GUI extends JFrame
 		botDifficulty.setSelectedIndex(0);
 	}
 	
-	public void showStart (boolean status)
-	{
-		start.setVisible(status);
-	}
-	
 	/*public int getSIofAmount ()
 	{
 		return botAmount.getSelectedIndex();
 	}*/
 	
+	/**
+	 * Gibt den Bot-Schwierigkeitsgrad zurück.
+	 * 
+	 * @return Schwierigkeitsgrad
+	 */
+	
 	public int getSIofDifficulty ()
 	{
 		return botDifficulty.getSelectedIndex();
 	}
+	
+	/**
+	 * Methode skaliert übergebendes Bild.
+	 * 
+	 * @param img {@link Image}
+	 * @param w Breite
+	 * @param h Höhe
+	 * @return skaliertes Bild
+	 */
 	
 	private Image scaledImage (Image img, int w, int h)
 	{
@@ -592,4 +703,9 @@ public class GUI extends JFrame
 		g2.dispose();
 		return resizedImage;
 	}
+	
+	public void showStart (boolean status)
+    {
+        start.setVisible(status);
+    }
 }
