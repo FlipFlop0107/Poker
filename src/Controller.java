@@ -40,7 +40,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 			            	  playerBet++; 
 			            	  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 			              } 
-						  gui.updateUI(table.getPlayerBalance());
+						  gui.updateChips(table.getPlayerBalance());
 						  break;
 		case "5": 	 	  if (e.getButton() == e.BUTTON3) 
 						  {
@@ -68,7 +68,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 		        				  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);  
 	        				  }
 				          } 
-				          gui.updateUI(table.getPlayerBalance());
+				          gui.updateChips(table.getPlayerBalance());
 						  break;
 		case "10": 	 	  if (e.getButton() == e.BUTTON3) 
 						  {
@@ -96,7 +96,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 							  }
 				          } 
-				          gui.updateUI(table.getPlayerBalance());
+				          gui.updateChips(table.getPlayerBalance());
 						  break;
 	    case "25": 	 	  if (e.getButton() == e.BUTTON3) 
 						  {
@@ -124,7 +124,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 							  }
 				          } 
-				          gui.updateUI(table.getPlayerBalance());
+				          gui.updateChips(table.getPlayerBalance());
 						  break;
 		case "50": 	 	  if (e.getButton() == e.BUTTON3) 
 						  {
@@ -152,7 +152,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 							  }
 				          } 
-				          gui.updateUI(table.getPlayerBalance());
+				          gui.updateChips(table.getPlayerBalance());
 						  break;
 	  case "100": 	 	  if (e.getButton() == e.BUTTON3) 
 						  {
@@ -180,7 +180,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 							  }
 				          } 
-				          gui.updateUI(table.getPlayerBalance());
+				          gui.updateChips(table.getPlayerBalance());
 						  break;
 	   case "500": 	 	  if (e.getButton() == e.BUTTON3) 
 						  {
@@ -208,7 +208,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 							  }
 				          } 
-				          gui.updateUI(table.getPlayerBalance());
+				          gui.updateChips(table.getPlayerBalance());
 						  break;
 	  case "1000": 	 	  if (e.getButton() == e.BUTTON3) 
 						  {
@@ -236,7 +236,7 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 								  gui.updateBalanceStats(table.getPlayerBalance() - playerBet, playerBet);
 							  }
 				          } 
-				          gui.updateUI(table.getPlayerBalance());
+				          gui.updateChips(table.getPlayerBalance());
 						  break;
 		}	
 	}
@@ -260,58 +260,28 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 		}
 		else if (e.getActionCommand().equals("Start Game"))
 		{
-			boolean done = false;
-			while (!done)
+			if (/*gui.getSIofAmount() != 0 && */gui.getSIofDifficulty() != 0)
 			{
-				try
-				{
-					if (/*gui.getSIofAmount() != 0 && */gui.getSIofDifficulty() != 0)
-					{
-						table = new Table (/*gui.getSIofAmount()+1*/5, gui.getSIofDifficulty());
-						table.preflop();
-						//table.setRndBlinds();
-						gui.setCL("game");
-						gui.setPocketIcons(table.getPPocket());
-						gui.visualiseBotStats(/*gui.getSIofAmount()+1*/5, table.getBots());
-						done = true;
-					}
-					else new Help ("start game"); done = true;
-				}
-				catch (NullPointerException ex)
-				{
-					System.out.println("Restart");
-				}
+				table = new Table (/*gui.getSIofAmount()+1*/5, gui.getSIofDifficulty());
+				//table.setRndBlinds();
+				gui.setCL("game");
+				gui.visualiseBotStats(/*gui.getSIofAmount()+1*/5, table.getBots());
+				gui.disableChips();
+						
 			}
-			gui.updateUI(table.getPlayerBalance());
+			else new Help ("start game");
+			gui.updateChips(table.getPlayerBalance());
 		}
 		else if (e.getActionCommand().equals("Next"))
 		{
-			switch (a)
-			{
-			case 0: table.setCCard("flop");
-					a++;
-					gui.setFlopIcons(table.getCCards());
-					break;
-			case 1: table.setCCard("turn");
-					a++;
-					List<Card> turn = table.getCCards();
-					turn.toLast();
-					gui.setTurnOrRiverIcon("turn", turn.getContent());
-					break;
-			case 2: table.setCCard("river");
-					a++;
-					List<Card> river = table.getCCards();
-					river.toLast();
-					gui.setTurnOrRiverIcon("river", river.getContent());
-					break;
-			default: new Help ("");
-			}
+			
 		}
 		else if (e.getActionCommand().equals("Reset"))
 		{
 			table = null;
 			gui.resetGame();
 			gui.setCL("main menu");
+			gui.showStart(true);
 			a = 0;
 			playerBet = 0;
 		}
@@ -320,16 +290,44 @@ public class Controller extends MouseAdapter implements ActionListener/*, MouseL
 			if (playerBet == 0) new Help ("bet");
 			else
 			{
+				table.botBet();
 				table.playerBet(playerBet);
 				playerBet = 0;
 				gui.disableChips();
-				table.botBet();
+				gui.updateBotStats(/*gui.getSIofAmount+1*/5, table.getBots());
+				switch (a)
+				{
+				case 0: table.setCCard("flop");
+						a++;
+						gui.setFlopIcons(table.getCCards());
+						break;
+				case 1: table.setCCard("turn");
+						a++;
+						List<Card> turn = table.getCCards();
+						turn.toLast();
+						gui.setTurnOrRiverIcon("turn", turn.getContent());
+						break;
+				case 2: table.setCCard("river");
+						a++;
+						List<Card> river = table.getCCards();
+						river.toLast();
+						gui.setTurnOrRiverIcon("river", river.getContent());
+						break;
+				default: new Help ("");
+				}
 			}
 		}
 		else if (e.getActionCommand().equals("nextRound") && a > 2)
 		{
 			a = 0;
 			table.newDeck();
+		}
+		else if (e.getActionCommand().equals("Start")) 
+		{
+			table.preflop();
+			gui.showStart(false);
+			gui.setPocketIcons(table.getPPocket());
+			gui.enableChips();
 		}
 	}
 }

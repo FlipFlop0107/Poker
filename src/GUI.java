@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame
@@ -81,12 +83,17 @@ public class GUI extends JFrame
 	private JButton confirmBet;
 	private JButton next;
 	private JButton reset;
+	private JButton start;
 	
 	//private JComboBox botAmount;
-	private JComboBox botDifficulty;
+	private JComboBox<String> botDifficulty;
 	
 	private JTextField txt_playerBalance;
 	private JTextField txt_playerBet;
+	private JTextField[] names;
+	private JTextField[] balances;
+	private JTextField[] bets;
+	
 	
 	private JSeparator sep;
 	
@@ -102,8 +109,28 @@ public class GUI extends JFrame
 	    setLocation(x, y);
 		setResizable(false);
 		setTitle("Texas Hold'em  -  Poker");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/chips/10000.png")));
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		/*try
+		{
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException e)
+		{
+			// TODO Automatisch generierter Erfassungsblock
+			e.printStackTrace();
+		} catch (InstantiationException e)
+		{
+			// TODO Automatisch generierter Erfassungsblock
+			e.printStackTrace();
+		} catch (IllegalAccessException e)
+		{
+			// TODO Automatisch generierter Erfassungsblock
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e)
+		{
+			// TODO Automatisch generierter Erfassungsblock
+			e.printStackTrace();
+		}*/
 		
 		card = new List <JLabel> ();
 		gui_elements = new List <Component> ();
@@ -326,6 +353,11 @@ public class GUI extends JFrame
 		game.add(bet1000);
 		chips.append(bet1000);
 		
+		start = new JButton("Start");
+		start.setBounds(416, 231, 120, 42);
+		game.add(start);
+		gui_elements.append(start);
+		
 		confirmBet = new JButton ("confirmBet");
 		confirmBet.setBounds(585, 630, 120, 50);
 		game.add(confirmBet);
@@ -427,7 +459,7 @@ public class GUI extends JFrame
 		}
 	}
 	
-	public void updateUI (int balance)
+	public void updateChips (int balance)
 	{
 		if (balance < 1000) bet1000.setVisible(false);
 		else bet1000.setVisible(true);
@@ -484,12 +516,12 @@ public class GUI extends JFrame
 
 	public void visualiseBotStats (int amount, List <Bot> bots)
 	{
+		names = new JTextField[amount];
+		balances = new JTextField[amount];
+		bets = new JTextField[amount];
 		Random rndGen = new Random ();
 		int rnd;
 		bots.toFirst();
-		JTextField[] balances = new JTextField[amount];
-		JTextField[] names = new JTextField[amount];
-		JTextField[] bets = new JTextField[amount];
 		for (int i = 0; i < amount; i++)
 		{
 			rnd = rndGen.nextInt(23);
@@ -502,7 +534,21 @@ public class GUI extends JFrame
 			balances[i].setBounds(10+(i*115), 40, 100, 20);
 			balances[i].setEditable(false);
 			game.add(balances[i]);
-			bets[i] = new JTextField ();
+			bets[i] = new JTextField ("Last Bet:   ");
+			bets[i].setBounds(10+(i*115), 70, 100, 20);
+			bets[i].setEditable(false);
+			game.add(bets[i]);
+			bots.next();
+		}
+	}
+	
+	public void updateBotStats (int amount, List <Bot> bots)
+	{
+		bots.toFirst();
+		for (int i = 0; i < amount; i++)
+		{
+			bets[i].setText("Last Bet:   " + bots.getContent().getLastBet());
+			balances[i].setText("Balance:   " + bots.getContent().getBalance());
 			bots.next();
 		}
 	}
@@ -520,6 +566,11 @@ public class GUI extends JFrame
 		pocket2.setIcon(null);
 		//botAmount.setSelectedIndex(0);
 		botDifficulty.setSelectedIndex(0);
+	}
+	
+	public void showStart (boolean status)
+	{
+		start.setVisible(status);
 	}
 	
 	/*public int getSIofAmount ()

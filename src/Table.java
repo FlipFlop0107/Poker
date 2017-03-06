@@ -96,20 +96,6 @@ public class Table
 		return player.getBalance();
 	}
 	
-	public int[] getBotBalances ()
-	{
-		int[] balances = new int[botAmount];
-		int a = 0;
-		bots.toFirst();
-		while (bots.hasAccess())
-		{
-			balances[a] = bots.getContent().getBalance();
-			bots.next();
-			a++;
-		}
-		return balances;
-	}
-	
 	public void playerBet (int bet)
 	{
 		player.bet(bet);

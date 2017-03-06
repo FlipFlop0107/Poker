@@ -2,13 +2,13 @@ import java.util.Random;
 
 public class Bot extends Player
 {
+	private int lastBet;
 	private int difficulty;
 	private String name;
 	
 	public Bot (int difficulty)
 	{	
 		this.difficulty = difficulty;
-		System.out.println(getDifficulty());
 		name = "-  N. N.  -";
 	}
 	
@@ -33,17 +33,16 @@ public class Bot extends Player
 			double balance = getBalance();
 			switch (difficulty)
 			{
-			case 1: if (checkCards(cCards).contains("royal")) bet((int) balance);
-					else if (checkCards(cCards).contains("straightFlush")) bet((int) (balance*0.9));
-					else if (checkCards(cCards).contains("four")) bet((int) (balance*0.8));
-					else if (checkCards(cCards).contains("full")) bet((int) (balance*0.7));
-					else if (checkCards(cCards).contains("flush")) bet((int) (balance*0.6));
-					else if (checkCards(cCards).contains("straight")) bet((int) (balance*0.5));
-					else if (checkCards(cCards).contains("three")) bet((int) (balance*0.4));
-					else if (checkCards(cCards).contains("two")) bet((int) (balance*0.3));
-					else if (checkCards(cCards).contains("one")) bet((int) (balance*0.2));
-					else fold();
-					break;
+			case 1: if (checkCards(cCards).contains("royal")) lastBet = bet((int) balance);
+					else if (checkCards(cCards).contains("straightFlush")) lastBet = bet((int) (balance*0.9));
+					else if (checkCards(cCards).contains("four")) lastBet = bet((int) (balance*0.8));
+					else if (checkCards(cCards).contains("full")) lastBet = bet((int) (balance*0.7));
+					else if (checkCards(cCards).contains("flush")) lastBet = bet((int) (balance*0.6));
+					else if (checkCards(cCards).contains("straight")) lastBet = bet((int) (balance*0.5));
+					else if (checkCards(cCards).contains("three")) lastBet = bet((int) (balance*0.4));
+					else if (checkCards(cCards).contains("two")) lastBet = bet((int) (balance*0.3));
+					else if (checkCards(cCards).contains("one")) lastBet = bet((int) (balance*0.2));
+					else fold(); lastBet = bet(20);
 			/*case 2: if (checkCards(cCards).contains("royal")) bet((int) balance);
 					else if (checkCards(cCards).contains("straightFlush"))
 					{
@@ -155,10 +154,15 @@ public class Bot extends Player
 						if (rnd > 65) bet(getBalance()/10);
 						else fold();
 					}
-					break;
-			default: bet(0); */
+					break;*/
+			default: lastBet = bet (10);
 			}
 		}
+	}
+	
+	public int getLastBet ()
+	{
+		return lastBet;
 	}
 	
 	public String getName ()
