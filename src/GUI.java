@@ -8,6 +8,7 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -640,6 +641,13 @@ public class GUI extends JFrame
 		}
 	}
 	
+	/**
+	 * Aktualisiert Bot-Status
+	 * 
+	 * @param amount Anzahl der Bots
+	 * @param bots Bots
+	 */
+	
 	public void updateBotStats (int amount, List <Bot> bots)
 	{
 		bots.toFirst();
@@ -710,10 +718,20 @@ public class GUI extends JFrame
 		return resizedImage;
 	}
 	
+	/**
+	 * Blendet den Startbutton ein bzw. aus.
+	 * 
+	 * @param status true/false je nach ob sichtbar oder nicht
+	 */
+	
 	public void showStart (boolean status)
     {
         start.setVisible(status);
     }
+	
+	/**
+	 * Startet den Countdown.
+	 */
 	
 	public void countDown ()
 	{

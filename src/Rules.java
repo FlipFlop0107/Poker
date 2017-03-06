@@ -14,8 +14,8 @@ public class Rules
 	/**
 	 * Konstruktor fügt Spielerkarten und Spielkarten in ein Array zusammen.
 	 * 
-	 * @param cCards
-	 * @param pocket
+	 * @param cCards Spielkarten
+	 * @param pocket Spielerkarten
 	 */
 	public Rules (List<Card> cCards, List<Card> pocket)
 	{

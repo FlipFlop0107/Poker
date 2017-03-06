@@ -99,7 +99,7 @@ public class Table
 	/**
 	 * Gibt eine {@link List} aus Objekten vom Typ {@link Bot} zurück.
 	 * 
-	 * @return
+	 * @return Bots
 	 */
 	
 	public List<Bot> getBots ()
@@ -172,7 +172,7 @@ public class Table
 	/**
 	 * Setzt Spielereinsatz.
 	 * 
-	 * @param bet
+	 * @param bet Einsatz
 	 */
 	
 	public void playerBet (int bet)
