@@ -186,11 +186,6 @@ public class Player
 	 */
 	public String checkCards (List<Card> cCards)
 	{
-		/*List<Card> temp = new List<Card> ();
-		for (int x = 9; x < 14; x++)
-		{
-			temp.append(new Card(x, 2));
-		}*/
-		return new Rules (cCards/*temp*/, pocketToList()).checkCards(); 
+		return new Rules (cCards, pocketToList()).checkCards(); 
 	}
 }
